@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Budget\Commands\CreateBudget\" />
+    <Folder Include="Features\Budget\Commands\DeleteBudget\" />
+    <Folder Include="Features\Budget\Commands\UpdateBudget\" />
+    <Folder Include="Features\Budget\Queries\GetBudgetDetail\" />
+    <Folder Include="Features\Budget\Queries\GetBudgetsList\" />
+    <Folder Include="Features\Compte\Commands\CreateCompte\" />
+    <Folder Include="Features\Compte\Commands\DeleteCompte\" />
+    <Folder Include="Features\Compte\Commands\UpdateCompte\" />
+    <Folder Include="Features\Compte\Queries\GetComptesList\" />
+    <Folder Include="Features\Compte\Queries\GetCompteDetail\" />
+    <Folder Include="Features\Depense\Commands\CreateDepense\" />
+    <Folder Include="Features\Depense\Commands\DeleteDepense\" />
+    <Folder Include="Features\Depense\Commands\UpdateDepense\" />
+    <Folder Include="Features\Depense\Queries\GetDepensesList\" />
+    <Folder Include="Features\Depense\Queries\GetDepenseDetail\" />
+    <Folder Include="Features\Objectif\Commands\CreateObjectif\" />
+    <Folder Include="Features\Objectif\Commands\DeleteObjectif\" />
+    <Folder Include="Features\Objectif\Commands\UpdateObjectif\" />
+    <Folder Include="Features\Objectif\Queries\GetObjectisList\" />
+    <Folder Include="Features\Objectif\Queries\GetObjectifDetail\" />
+    <Folder Include="Features\Salaire\Commands\CreateSalaire\" />
+    <Folder Include="Features\Salaire\Commands\DeleteSalaire\" />
+    <Folder Include="Features\Salaire\Commands\UpdateSalaire\" />
+    <Folder Include="Features\Salaire\Queries\GetSalairesList\" />
+    <Folder Include="Features\Salaire\Queries\GetSalaireDetail\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="FluentValidation" Version="10.3.6" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.6" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BudGET.Domain\BudGET.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
