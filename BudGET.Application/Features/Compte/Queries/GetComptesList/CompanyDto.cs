@@ -9,7 +9,7 @@ namespace BudGET.Application.Features.Comptes.Queries.GetComptesList
     public class CompanyDto
     {
         public Guid CompanyId { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }
 

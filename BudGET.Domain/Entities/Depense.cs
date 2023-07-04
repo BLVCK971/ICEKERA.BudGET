@@ -8,9 +8,10 @@ namespace BudGET.Domain.Entities;
 public class Depense : AuditableEntity
 {
     public int Id { get; set; }
-    public string Nom { get; set; }
+    public string Nom { get; set; } = string.Empty;
     public DateTime Date { get; set; }
     public double Valeur { get; set; }
-    public Budget Categorie { get; set; }
+    public Guid BudgetId { get; set; }
+    public Budget Budget { get; set; } = default!;
 }
 

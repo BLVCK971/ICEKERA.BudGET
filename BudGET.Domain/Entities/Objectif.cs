@@ -7,6 +7,6 @@ namespace BudGET.Domain.Entities;
 
 public class Objectif : AuditableEntity
 {
-    public string Nom { get; set; }
+    public string Nom { get; set; } = string.Empty;
     public double Valeur { get; set; }
 }

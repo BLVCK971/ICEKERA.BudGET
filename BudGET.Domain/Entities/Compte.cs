@@ -5,19 +5,13 @@ namespace BudGET.Domain.Entities;
 
 public class Compte : AuditableEntity
 {
-    public string Intitule { get; set; }
-    public double Montant { get; set; }
-    public bool EstCompteCourant { get; set; }
-    public List<Depense>? Depenses { get; set; }
-    public List<Budget>? Budgets { get; set; }
-    public List<Objectif>? Objectifs { get; set; }
-    public List<Salaire>? Salaires { get; set; }
+    public string Intitule { get; set; } = string.Empty;
+    public double Montant { get; set; } = double.MinValue;
+    public bool EstCompteCourant { get; set; } = false;
+    public ICollection<Depense>? Depenses { get; set; }
+    public ICollection<Budget>? Budgets { get; set; }
+    public ICollection<Objectif>? Objectifs { get; set; }
+    public ICollection<Salaire>? Salaires { get; set; }
 
-    public Compte() 
-    {
-        Intitule = "";
-        Montant = 0.0;
-        EstCompteCourant = false;
-    }
 }
 
