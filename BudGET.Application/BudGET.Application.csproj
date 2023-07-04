@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Objectif\Queries\GetObjectisList\**" />
+    <EmbeddedResource Remove="Features\Objectif\Queries\GetObjectisList\**" />
+    <None Remove="Features\Objectif\Queries\GetObjectisList\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Features\Budget\Commands\CreateBudget\" />
     <Folder Include="Features\Budget\Commands\DeleteBudget\" />
     <Folder Include="Features\Budget\Commands\UpdateBudget\" />
@@ -25,7 +31,6 @@
     <Folder Include="Features\Objectif\Commands\CreateObjectif\" />
     <Folder Include="Features\Objectif\Commands\DeleteObjectif\" />
     <Folder Include="Features\Objectif\Commands\UpdateObjectif\" />
-    <Folder Include="Features\Objectif\Queries\GetObjectisList\" />
     <Folder Include="Features\Objectif\Queries\GetObjectifDetail\" />
     <Folder Include="Features\Salaire\Commands\CreateSalaire\" />
     <Folder Include="Features\Salaire\Commands\DeleteSalaire\" />
@@ -35,11 +40,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="11.0.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageReference Include="FluentValidation" Version="10.3.6" />
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.6" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
   </ItemGroup>
 
   <ItemGroup>
