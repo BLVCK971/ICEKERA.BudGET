@@ -1,8 +1,5 @@
-﻿using BudGET.Domain.Common;
-
-namespace BudGET.Domain.Entities;
-
-public class Budget : AuditableEntity
+namespace BudGET.Application.Features.Comptes.Queries.GetComptesList;
+public class BudgetDto
 {
     public Guid Id { get; set; }
     public string Nom { get; set; } = string.Empty;
