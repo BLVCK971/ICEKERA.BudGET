@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BudGET.Application.Responses
+﻿namespace BudGET.Application.Responses
 {
     public class BaseResponse
     {
@@ -12,7 +6,7 @@ namespace BudGET.Application.Responses
         {
             Success = true;
         }
-        public BaseResponse(string message = null)
+        public BaseResponse(string message)
         {
             Success = true;
             Message = message;
@@ -25,7 +19,7 @@ namespace BudGET.Application.Responses
         }
 
         public bool Success { get; set; }
-        public string Message { get; set; }
-        public List<string> ValidationErrors { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public List<string>? ValidationErrors { get; set; }
     }
 }

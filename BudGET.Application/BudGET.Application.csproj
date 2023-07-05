@@ -7,36 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Features\Objectif\Queries\GetObjectisList\**" />
-    <EmbeddedResource Remove="Features\Objectif\Queries\GetObjectisList\**" />
-    <None Remove="Features\Objectif\Queries\GetObjectisList\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Budget\Commands\CreateBudget\" />
-    <Folder Include="Features\Budget\Commands\DeleteBudget\" />
-    <Folder Include="Features\Budget\Commands\UpdateBudget\" />
-    <Folder Include="Features\Budget\Queries\GetBudgetDetail\" />
-    <Folder Include="Features\Budget\Queries\GetBudgetsList\" />
-    <Folder Include="Features\Compte\Commands\CreateCompte\" />
-    <Folder Include="Features\Compte\Commands\DeleteCompte\" />
-    <Folder Include="Features\Compte\Commands\UpdateCompte\" />
-    <Folder Include="Features\Compte\Queries\GetComptesList\" />
-    <Folder Include="Features\Compte\Queries\GetCompteDetail\" />
-    <Folder Include="Features\Depense\Commands\CreateDepense\" />
-    <Folder Include="Features\Depense\Commands\DeleteDepense\" />
-    <Folder Include="Features\Depense\Commands\UpdateDepense\" />
-    <Folder Include="Features\Depense\Queries\GetDepensesList\" />
-    <Folder Include="Features\Depense\Queries\GetDepenseDetail\" />
-    <Folder Include="Features\Objectif\Commands\CreateObjectif\" />
-    <Folder Include="Features\Objectif\Commands\DeleteObjectif\" />
-    <Folder Include="Features\Objectif\Commands\UpdateObjectif\" />
-    <Folder Include="Features\Objectif\Queries\GetObjectifDetail\" />
-    <Folder Include="Features\Salaire\Commands\CreateSalaire\" />
-    <Folder Include="Features\Salaire\Commands\DeleteSalaire\" />
-    <Folder Include="Features\Salaire\Commands\UpdateSalaire\" />
-    <Folder Include="Features\Salaire\Queries\GetSalairesList\" />
-    <Folder Include="Features\Salaire\Queries\GetSalaireDetail\" />
+    <Compile Remove="Features\Objectifs\Queries\GetObjectisList\**" />
+    <EmbeddedResource Remove="Features\Objectifs\Queries\GetObjectisList\**" />
+    <None Remove="Features\Objectifs\Queries\GetObjectisList\**" />
   </ItemGroup>
 
   <ItemGroup>

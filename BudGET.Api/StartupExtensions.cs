@@ -1,10 +1,6 @@
 ﻿using BudGET.Api.Middleware;
-using BudGET.Api.Services;
-using BudGET.Api.Utility;
 using BudGET.Application;
 using BudGET.Application.Contracts;
-using BudGET.Identity;
-using BudGET.Infrastructure;
 using BudGET.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -20,9 +16,9 @@ namespace BudGET.Api
             AddSwagger(builder.Services);
 
             builder.Services.AddApplicationServices();
-            builder.Services.AddInfrastructureServices(builder.Configuration);
+            //builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddPersistenceServices(builder.Configuration);
-            builder.Services.AddIdentityServices(builder.Configuration);
+            //builder.Services.AddIdentityServices(builder.Configuration);
 
 
             builder.Services.AddHttpContextAccessor();
@@ -56,7 +52,7 @@ namespace BudGET.Api
             
             app.UseAuthentication();
 
-            //app.UseCustomExceptionHandler();
+            app.UseCustomExceptionHandler();
 
             app.UseCors("Open");
 
@@ -117,7 +113,7 @@ namespace BudGET.Api
             using var scope = app.Services.CreateScope();
             try
             {
-                var context = scope.ServiceProvider.GetService<BudgetDbContext>();
+                var context = scope.ServiceProvider.GetService<BudGETDbContext>();
                 if (context != null)
                 {
                     await context.Database.EnsureDeletedAsync();
