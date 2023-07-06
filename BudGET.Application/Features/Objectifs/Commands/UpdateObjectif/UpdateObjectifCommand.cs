@@ -9,9 +9,9 @@ namespace BudGET.Application.Features.Objectifs.Commands.UpdateObjectif
 {
     public class UpdateObjectifCommand : IRequest
     {
-        public Guid ObjectifId { get; set; }
-        public string Name { get; set; }
-        public Guid CompanyId { get; set; }
+        public Guid Id { get; set; }
+        public string Nom { get; set; } = string.Empty;
+        public double Valeur { get; set; }
     }
 }
 

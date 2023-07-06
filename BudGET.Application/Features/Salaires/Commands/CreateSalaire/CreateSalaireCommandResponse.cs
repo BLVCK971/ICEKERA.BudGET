@@ -14,7 +14,7 @@ namespace BudGET.Application.Features.Salaires.Commands.CreateSalaire
 
         }
 
-        public CreateSalaireDto Salaire { get; set; }
+        public CreateSalaireDto Salaire { get; set; } = default!;
     }
 }
 

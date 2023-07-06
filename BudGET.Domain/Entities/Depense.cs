@@ -7,7 +7,7 @@ namespace BudGET.Domain.Entities;
 
 public class Depense : AuditableEntity
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string Nom { get; set; } = string.Empty;
     public DateTime Date { get; set; }
     public double Valeur { get; set; }

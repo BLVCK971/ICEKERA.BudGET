@@ -11,7 +11,7 @@ namespace BudGET.Application.Features.Objectifs.Commands.UpdateObjectif
     {
         public UpdateObjectifCommandValidator()
         {
-            RuleFor(p => p.Name)
+            RuleFor(p => p.Nom)
                 .NotEmpty().WithMessage("{PropertyName} est requis.")
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} ne doit pas excéder 10 caratères.");

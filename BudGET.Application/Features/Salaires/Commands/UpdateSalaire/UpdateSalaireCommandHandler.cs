@@ -25,11 +25,11 @@ namespace BudGET.Application.Features.Salaires.Commands.UpdateSalaire
         public async Task<Unit> Handle(UpdateSalaireCommand request, CancellationToken cancellationToken)
         {
 
-            var serviceToUpdate = await _eventRepository.GetByIdAsync(request.SalaireId);
+            var serviceToUpdate = await _eventRepository.GetByIdAsync(request.Id);
 
             if (serviceToUpdate == null)
             {
-                throw new NotFoundException(nameof(Salaire), request.SalaireId);
+                throw new NotFoundException(nameof(Salaire), request.Id);
             }
 
             var validator = new UpdateSalaireCommandValidator();

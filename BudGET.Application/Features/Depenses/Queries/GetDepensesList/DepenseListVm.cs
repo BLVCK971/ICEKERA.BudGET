@@ -1,10 +1,13 @@
+using BudGET.Domain.Entities;
+
 namespace BudGET.Application.Features.Depenses.Queries.GetDepensesList;
 public class DepenseListVm
 {
-    public Guid DepenseId { get; set; }
-    public string Name { get; set; }
-    public Guid CompanyId { get; set; }
-    public CompanyDto? Company { get; set; }
-    public ICollection<ReportVm>? Reports { get; set; }
+    public Guid Id { get; set; }
+    public string Nom { get; set; } = string.Empty;
+    public DateTime Date { get; set; }
+    public double Valeur { get; set; }
+    public Guid BudgetId { get; set; }
+    public BudgetDto Budget { get; set; } = default!;
 }
 

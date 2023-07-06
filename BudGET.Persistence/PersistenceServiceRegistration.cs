@@ -12,7 +12,7 @@ namespace BudGET.Persistence
         {
 
             services.AddDbContext<BudGETDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("BudGETManagementConnectionString")));
+                options.UseNpgsql(configuration.GetConnectionString("BudGETConnectionString")));
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 

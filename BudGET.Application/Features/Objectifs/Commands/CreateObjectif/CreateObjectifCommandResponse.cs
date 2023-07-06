@@ -14,7 +14,7 @@ namespace BudGET.Application.Features.Objectifs.Commands.CreateObjectif
 
         }
 
-        public CreateObjectifDto Objectif { get; set; }
+        public CreateObjectifDto Objectif { get; set; } = default!;
     }
 }
 

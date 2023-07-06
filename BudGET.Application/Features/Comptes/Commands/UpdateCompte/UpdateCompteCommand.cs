@@ -9,9 +9,10 @@ namespace BudGET.Application.Features.Comptes.Commands.UpdateCompte
 {
     public class UpdateCompteCommand : IRequest
     {
-        public Guid CompteId { get; set; }
-        public string Name { get; set; }
-        public Guid CompanyId { get; set; }
+        public Guid Id { get; set; }
+        public string Intitule { get; set; } = string.Empty;
+        public double Montant { get; set; } = double.MinValue;
+        public bool EstCompteCourant { get; set; } = false;
     }
 }
 

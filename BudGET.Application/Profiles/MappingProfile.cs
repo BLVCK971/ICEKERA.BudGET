@@ -48,13 +48,19 @@ namespace BudGET.Application.Profiles
             CreateMap<Compte, DeleteCompteCommand>().ReverseMap();
             CreateMap<Compte, UpdateCompteCommand>().ReverseMap();
 
-            //Depense
+            //DepenseVMs
             CreateMap<Depense, DepenseListVm>().ReverseMap();
             CreateMap<Depense, DepenseDetailVm>().ReverseMap();
 
             CreateMap<Depense, CreateDepenseCommand>().ReverseMap();
             CreateMap<Depense, DeleteDepenseCommand>().ReverseMap();
             CreateMap<Depense, UpdateDepenseCommand>().ReverseMap();
+
+            // Depense DTOs
+            CreateMap<Budget, Features.Depenses.Commands.CreateDepense.BudgetDto>();
+            CreateMap<Budget, Features.Depenses.Commands.UpdateDepense.BudgetDto>();
+            CreateMap<Budget, Features.Depenses.Queries.GetDepensesList.BudgetDto>();
+            CreateMap<Budget, Features.Depenses.Queries.GetDepenseDetail.BudgetDto>();
 
             //Objectif
             CreateMap<Objectif, ObjectifListVm>().ReverseMap();

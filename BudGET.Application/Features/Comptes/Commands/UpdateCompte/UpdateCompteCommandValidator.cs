@@ -11,7 +11,7 @@ namespace BudGET.Application.Features.Comptes.Commands.UpdateCompte
     {
         public UpdateCompteCommandValidator()
         {
-            RuleFor(p => p.Name)
+            RuleFor(p => p.Intitule)
                 .NotEmpty().WithMessage("{PropertyName} est requis.")
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} ne doit pas excéder 10 caratères.");

@@ -25,11 +25,11 @@ namespace BudGET.Application.Features.Comptes.Commands.UpdateCompte
         public async Task<Unit> Handle(UpdateCompteCommand request, CancellationToken cancellationToken)
         {
 
-            var serviceToUpdate = await _eventRepository.GetByIdAsync(request.CompteId);
+            var serviceToUpdate = await _eventRepository.GetByIdAsync(request.Id);
 
             if (serviceToUpdate == null)
             {
-                throw new NotFoundException(nameof(Compte), request.CompteId);
+                throw new NotFoundException(nameof(Compte), request.Id);
             }
 
             var validator = new UpdateCompteCommandValidator();

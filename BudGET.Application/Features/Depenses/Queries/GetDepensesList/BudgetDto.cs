@@ -1,11 +1,9 @@
-namespace BudGET.Application.Features.Budgets.Commands.CreateBudget;
+﻿namespace BudGET.Application.Features.Depenses.Queries.GetDepensesList;
 
-public class CreateBudgetDto
+public class BudgetDto
 {
-
     public Guid Id { get; set; }
     public string Nom { get; set; } = string.Empty;
     public double Montant { get; set; } = double.MinValue;
     public bool Exception { get; set; } = false;
 }
-

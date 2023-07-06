@@ -1,10 +1,10 @@
 namespace BudGET.Application.Features.Comptes.Queries.GetComptesList;
 public class CompteListVm
 {
-    public Guid CompteId { get; set; }
-    public string Name { get; set; }
-    public Guid CompanyId { get; set; }
-    public BudgetDto? Company { get; set; }
+    public Guid Id { get; set; }
+    public string Intitule { get; set; } = string.Empty;
+    public double Montant { get; set; } = double.MinValue;
+    public bool EstCompteCourant { get; set; } = false;
     public ICollection<BudgetDto>? Budgets { get; set; }
     public ICollection<DepenseDto>? Depenses { get; set; }
     public ICollection<ObjectifDto>? Objectifs { get; set; }

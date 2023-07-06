@@ -14,7 +14,7 @@ namespace BudGET.Application.Features.Budgets.Commands.CreateBudget
 
         }
 
-        public CreateBudgetDto Budget { get; set; }
+        public CreateBudgetDto Budget { get; set; } = default!;
     }
 }
 

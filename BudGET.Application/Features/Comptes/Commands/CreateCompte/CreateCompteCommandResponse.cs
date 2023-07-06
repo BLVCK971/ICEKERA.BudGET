@@ -14,7 +14,7 @@ namespace BudGET.Application.Features.Comptes.Commands.CreateCompte
 
         }
 
-        public CreateCompteDto Compte { get; set; }
+        public CreateCompteDto Compte { get; set; } = default!;
     }
 }
 

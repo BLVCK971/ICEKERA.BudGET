@@ -25,11 +25,11 @@ namespace BudGET.Application.Features.Objectifs.Commands.UpdateObjectif
         public async Task<Unit> Handle(UpdateObjectifCommand request, CancellationToken cancellationToken)
         {
 
-            var serviceToUpdate = await _eventRepository.GetByIdAsync(request.ObjectifId);
+            var serviceToUpdate = await _eventRepository.GetByIdAsync(request.Id);
 
             if (serviceToUpdate == null)
             {
-                throw new NotFoundException(nameof(Objectif), request.ObjectifId);
+                throw new NotFoundException(nameof(Objectif), request.Id);
             }
 
             var validator = new UpdateObjectifCommandValidator();

@@ -1,3 +1,4 @@
+using BudGET.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,12 @@ namespace BudGET.Application.Features.Depenses.Commands.UpdateDepense
 {
     public class UpdateDepenseCommand : IRequest
     {
-        public Guid DepenseId { get; set; }
-        public string Name { get; set; }
-        public Guid CompanyId { get; set; }
+        public Guid Id { get; set; }
+        public string Nom { get; set; } = string.Empty;
+        public DateTime Date { get; set; }
+        public double Valeur { get; set; }
+        public Guid BudgetId { get; set; }
+        public BudgetDto Budget { get; set; } = default!;
     }
 }
 

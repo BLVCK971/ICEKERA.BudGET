@@ -8,10 +8,9 @@ namespace BudGET.Application.Features.Objectifs.Queries.GetObjectifDetail
 {
     public class ObjectifDetailVm
     {
-        public Guid ObjectifId { get; set; }
-        public string Name { get; set; }
-        public Guid CompanyId { get; set; }
-        public string RoleId { get; set; }
+        public Guid Id { get; set; }
+        public string Nom { get; set; } = string.Empty;
+        public double Valeur { get; set; }
     }
 }
 

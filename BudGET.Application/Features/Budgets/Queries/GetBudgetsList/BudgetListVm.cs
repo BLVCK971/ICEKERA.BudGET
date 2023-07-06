@@ -1,10 +1,10 @@
 namespace BudGET.Application.Features.Budgets.Queries.GetBudgetsList;
 public class BudgetListVm
 {
-    public Guid BudgetId { get; set; }
-    public string Name { get; set; }
-    public Guid CompanyId { get; set; }
-    public CompanyDto? Company { get; set; }
-    public ICollection<ReportVm>? Reports { get; set; }
+
+    public Guid Id { get; set; }
+    public string Nom { get; set; } = string.Empty;
+    public double Montant { get; set; } = double.MinValue;
+    public bool Exception { get; set; } = false;
 }
 

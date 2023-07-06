@@ -14,7 +14,7 @@ namespace BudGET.Application.Features.Depenses.Commands.CreateDepense
 
         }
 
-        public CreateDepenseDto Depense { get; set; }
+        public CreateDepenseDto Depense { get; set; } = default!;
     }
 }
 

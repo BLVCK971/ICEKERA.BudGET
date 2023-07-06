@@ -25,11 +25,11 @@ namespace BudGET.Application.Features.Depenses.Commands.UpdateDepense
         public async Task<Unit> Handle(UpdateDepenseCommand request, CancellationToken cancellationToken)
         {
 
-            var serviceToUpdate = await _eventRepository.GetByIdAsync(request.DepenseId);
+            var serviceToUpdate = await _eventRepository.GetByIdAsync(request.Id);
 
             if (serviceToUpdate == null)
             {
-                throw new NotFoundException(nameof(Depense), request.DepenseId);
+                throw new NotFoundException(nameof(Depense), request.Id);
             }
 
             var validator = new UpdateDepenseCommandValidator();

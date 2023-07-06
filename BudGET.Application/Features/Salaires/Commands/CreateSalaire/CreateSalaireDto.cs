@@ -2,8 +2,8 @@ namespace BudGET.Application.Features.Salaires.Commands.CreateSalaire;
 
 public class CreateSalaireDto
 {
-    public Guid SalaireId { get; set; }
-    public string Name { get; set; }
-    public Guid CompanyId { get; set; }
+    public Guid Id { get; set; }
+    public string Nom { get; set; } = string.Empty;
+    public double Valeur { get; set; }
 }
 

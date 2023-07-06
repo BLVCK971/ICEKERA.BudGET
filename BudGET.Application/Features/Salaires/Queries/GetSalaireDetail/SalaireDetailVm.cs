@@ -8,10 +8,8 @@ namespace BudGET.Application.Features.Salaires.Queries.GetSalaireDetail
 {
     public class SalaireDetailVm
     {
-        public Guid SalaireId { get; set; }
-        public string Name { get; set; }
-        public Guid CompanyId { get; set; }
-        public string RoleId { get; set; }
+        public string Nom { get; set; } = string.Empty;
+        public double Valeur { get; set; }
     }
 }
 
