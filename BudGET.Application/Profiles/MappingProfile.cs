@@ -37,6 +37,7 @@ namespace BudGET.Application.Profiles
             CreateMap<Budget, BudgetDetailVm>().ReverseMap();
 
             CreateMap<Budget, CreateBudgetCommand>().ReverseMap();
+            CreateMap<Budget, CreateBudgetDto>().ReverseMap();
             CreateMap<Budget, DeleteBudgetCommand>().ReverseMap();
             CreateMap<Budget, UpdateBudgetCommand>().ReverseMap();
 
@@ -52,12 +53,12 @@ namespace BudGET.Application.Profiles
             CreateMap<Depense, DepenseListVm>().ReverseMap();
             CreateMap<Depense, DepenseDetailVm>().ReverseMap();
 
-            CreateMap<Depense, CreateDepenseCommand>().ReverseMap();
+            CreateMap<Depense, CreateDepenseCommand>().ReverseMap();    
             CreateMap<Depense, DeleteDepenseCommand>().ReverseMap();
             CreateMap<Depense, UpdateDepenseCommand>().ReverseMap();
 
             // Depense DTOs
-            CreateMap<Budget, Features.Depenses.Commands.CreateDepense.BudgetDto>();
+            CreateMap<Budget, Features.Depenses.Commands.CreateDepense.BudgetDto>() ;
             CreateMap<Budget, Features.Depenses.Commands.UpdateDepense.BudgetDto>();
             CreateMap<Budget, Features.Depenses.Queries.GetDepensesList.BudgetDto>();
             CreateMap<Budget, Features.Depenses.Queries.GetDepenseDetail.BudgetDto>();

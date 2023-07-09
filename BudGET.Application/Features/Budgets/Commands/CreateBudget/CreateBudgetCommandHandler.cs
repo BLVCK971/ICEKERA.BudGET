@@ -12,13 +12,13 @@ namespace BudGET.Application.Features.Budgets.Commands.CreateBudget
 {
     public class CreateBudgetCommandHandler : IRequestHandler<CreateBudgetCommand, CreateBudgetCommandResponse>
     {
-        private readonly IAsyncRepository<Budget> _serviceRepository;
+        private readonly IAsyncRepository<Budget> _budgetRepository;
         private readonly IMapper _mapper;
 
-        public CreateBudgetCommandHandler(IMapper mapper, IAsyncRepository<Budget> serviceRepository)
+        public CreateBudgetCommandHandler(IMapper mapper, IAsyncRepository<Budget> budgetRepository)
         {
             _mapper = mapper;
-            _serviceRepository = serviceRepository;
+            _budgetRepository = budgetRepository;
         }
 
         public async Task<CreateBudgetCommandResponse> Handle(CreateBudgetCommand request, CancellationToken cancellationToken)
@@ -39,9 +39,9 @@ namespace BudGET.Application.Features.Budgets.Commands.CreateBudget
             }
             if (createBudgetCommandResponse.Success)
             {
-                var service = new Budget() { Nom = request.Nom, Montant = request.Montant, Exception = request.Exception };
-                service = await _serviceRepository.AddAsync(service);
-                createBudgetCommandResponse.Budget = _mapper.Map<CreateBudgetDto>(service);
+                var budget = new Budget() { Id = Guid.NewGuid(),Nom = request.Nom, Montant = request.Montant, Exception = request.Exception };
+                budget = await _budgetRepository.AddAsync(budget);
+                createBudgetCommandResponse.Budget = _mapper.Map<CreateBudgetDto>(budget);
             }
 
             return createBudgetCommandResponse;
