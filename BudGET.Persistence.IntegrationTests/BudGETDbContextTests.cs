@@ -10,7 +10,7 @@ namespace BudGET.Persistence.IntegrationTests
     {
         private readonly BudGETDbContext _budGETDbContext;
         //private readonly Mock<ILoggedInUserService> _loggedInUserServiceMock;
-        private readonly string _loggedInUserId;
+        //private readonly string _loggedInUserId;
 
         public BudGETDbContextTests()
         {
