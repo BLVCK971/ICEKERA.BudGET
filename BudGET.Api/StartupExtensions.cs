@@ -100,7 +100,7 @@ namespace BudGET.Api
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "GloboTicket Ticket Management API",
+                    Title = "BudGET API",
 
                 });
 
@@ -120,8 +120,9 @@ namespace BudGET.Api
                     await context.Database.MigrateAsync();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
+                throw;
                 //var logger = scope.ServiceProvider.GetRequiredService<ILogger>();
                 //logger.LogError(ex, "An error occurred while migrating the database.");
             }
