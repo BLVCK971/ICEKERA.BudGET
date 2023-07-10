@@ -24,11 +24,11 @@ namespace BudGET.Application.Features.Salaires.Commands.DeleteSalaire
 
         public async Task<Unit> Handle(DeleteSalaireCommand request, CancellationToken cancellationToken)
         {
-            var serviceToDelete = await _serviceRepository.GetByIdAsync(request.SalaireId);
+            var serviceToDelete = await _serviceRepository.GetByIdAsync(request.Id);
 
             if (serviceToDelete == null)
             {
-                throw new NotFoundException(nameof(Salaire), request.SalaireId);
+                throw new NotFoundException(nameof(Salaire), request.Id);
             }
 
             await _serviceRepository.DeleteAsync(serviceToDelete);

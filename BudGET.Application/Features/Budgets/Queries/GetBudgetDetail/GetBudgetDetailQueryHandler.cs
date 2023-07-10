@@ -12,21 +12,21 @@ namespace BudGET.Application.Features.Budgets.Queries.GetBudgetDetail
 {
     public class GetBudgetDetailQueryHandler : IRequestHandler<GetBudgetDetailQuery, BudgetDetailVm>
     {
-            private readonly IAsyncRepository<Budget> _serviceRepository;
+            private readonly IAsyncRepository<Budget> _budgetRepository;
             private readonly IMapper _mapper;
 
-            public GetBudgetDetailQueryHandler(IMapper mapper, IAsyncRepository<Budget> serviceRepository)
+            public GetBudgetDetailQueryHandler(IMapper mapper, IAsyncRepository<Budget> budgetRepository)
             {
                 _mapper = mapper;
-                _serviceRepository = serviceRepository;
+                _budgetRepository = budgetRepository;
             }
 
             public async Task<BudgetDetailVm> Handle(GetBudgetDetailQuery request, CancellationToken cancellationToken)
             {
-                var @service = await _serviceRepository.GetByIdAsync(request.BudgetId);
-                var serviceDetailDto = _mapper.Map<BudgetDetailVm>(@service);
+                var @budget = await _budgetRepository.GetByIdAsync(request.Id);
+                var budgetDetailDto = _mapper.Map<BudgetDetailVm>(@budget);
 
-                return serviceDetailDto;
+                return budgetDetailDto;
             }
     }
 }

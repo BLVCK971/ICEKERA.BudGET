@@ -24,11 +24,11 @@ namespace BudGET.Application.Features.Objectifs.Commands.DeleteObjectif
 
         public async Task<Unit> Handle(DeleteObjectifCommand request, CancellationToken cancellationToken)
         {
-            var serviceToDelete = await _serviceRepository.GetByIdAsync(request.ObjectifId);
+            var serviceToDelete = await _serviceRepository.GetByIdAsync(request.Id);
 
             if (serviceToDelete == null)
             {
-                throw new NotFoundException(nameof(Objectif), request.ObjectifId);
+                throw new NotFoundException(nameof(Objectif), request.Id);
             }
 
             await _serviceRepository.DeleteAsync(serviceToDelete);

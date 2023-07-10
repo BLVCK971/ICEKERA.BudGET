@@ -9,7 +9,7 @@ namespace BudGET.Application.Features.Budgets.Queries.GetBudgetDetail
 {
     public class GetBudgetDetailQuery : IRequest<BudgetDetailVm>
     {
-        public Guid BudgetId { get; set; }
+        public Guid Id { get; set; }
     }
 }
 

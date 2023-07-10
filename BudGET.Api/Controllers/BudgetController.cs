@@ -1,6 +1,7 @@
 ﻿using BudGET.Application.Features.Budgets.Commands.CreateBudget;
 using BudGET.Application.Features.Budgets.Commands.DeleteBudget;
 using BudGET.Application.Features.Budgets.Commands.UpdateBudget;
+using BudGET.Application.Features.Budgets.Queries.GetBudgetDetail;
 using BudGET.Application.Features.Budgets.Queries.GetBudgetsList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,13 @@ public class BudgetController : ControllerBase
         return Ok(dtos);
     }
 
+    [HttpGet("{id}", Name = "GetBudgetById")]
+    public async Task<ActionResult<BudgetDetailVm>> GetBudgetById(Guid id)
+    {
+        var getBudgetDetailQuery = new GetBudgetDetailQuery() { Id = id };
+        return Ok(await _mediator.Send(getBudgetDetailQuery));
+    }
+
     [HttpPost(Name = "AddBudget")]
     public async Task<ActionResult<CreateBudgetCommandResponse>> Create([FromBody] CreateBudgetCommand createBudgetCommand)
     {
@@ -43,7 +51,7 @@ public class BudgetController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete(Name = "DeleteBudget")]
+    [HttpDelete("{id}", Name = "DeleteBudget")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]

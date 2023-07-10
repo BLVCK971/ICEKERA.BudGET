@@ -3,6 +3,7 @@ using BudGET.Application;
 using BudGET.Application.Contracts;
 using BudGET.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 //using Serilog;
 
@@ -67,6 +68,7 @@ namespace BudGET.Api
         {
             services.AddSwaggerGen(c =>
             {
+                c.CustomSchemaIds(type => type.ToString());
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 

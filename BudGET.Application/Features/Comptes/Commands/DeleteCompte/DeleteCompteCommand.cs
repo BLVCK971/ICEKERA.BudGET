@@ -9,7 +9,7 @@ namespace BudGET.Application.Features.Comptes.Commands.DeleteCompte
 {
     public class DeleteCompteCommand : IRequest
     {
-        public Guid CompteId { get; set; }
+        public Guid Id { get; set; }
     }
 }
 

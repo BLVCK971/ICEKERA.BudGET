@@ -9,7 +9,7 @@ namespace BudGET.Application.Features.Objectifs.Commands.DeleteObjectif
 {
     public class DeleteObjectifCommand : IRequest
     {
-        public Guid ObjectifId { get; set; }
+        public Guid Id { get; set; }
     }
 }
 

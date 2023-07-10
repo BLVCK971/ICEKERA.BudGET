@@ -9,7 +9,7 @@ namespace BudGET.Application.Features.Salaires.Commands.DeleteSalaire
 {
     public class DeleteSalaireCommand : IRequest
     {
-        public Guid SalaireId { get; set; }
+        public Guid Id { get; set; }
     }
 }
 

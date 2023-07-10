@@ -9,7 +9,7 @@ namespace BudGET.Application.Features.Depenses.Commands.DeleteDepense
 {
     public class DeleteDepenseCommand : IRequest
     {
-        public Guid DepenseId { get; set; }
+        public Guid Id { get; set; }
     }
 }
 

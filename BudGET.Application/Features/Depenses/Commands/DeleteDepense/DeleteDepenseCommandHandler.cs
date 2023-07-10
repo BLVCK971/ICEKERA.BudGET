@@ -24,11 +24,11 @@ namespace BudGET.Application.Features.Depenses.Commands.DeleteDepense
 
         public async Task<Unit> Handle(DeleteDepenseCommand request, CancellationToken cancellationToken)
         {
-            var serviceToDelete = await _serviceRepository.GetByIdAsync(request.DepenseId);
+            var serviceToDelete = await _serviceRepository.GetByIdAsync(request.Id);
 
             if (serviceToDelete == null)
             {
-                throw new NotFoundException(nameof(Depense), request.DepenseId);
+                throw new NotFoundException(nameof(Depense), request.Id);
             }
 
             await _serviceRepository.DeleteAsync(serviceToDelete);

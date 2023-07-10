@@ -19,11 +19,11 @@ namespace BudGET.Application.Features.Comptes.Commands.DeleteCompte
 
         public async Task<Unit> Handle(DeleteCompteCommand request, CancellationToken cancellationToken)
         {
-            var serviceToDelete = await _serviceRepository.GetByIdAsync(request.CompteId);
+            var serviceToDelete = await _serviceRepository.GetByIdAsync(request.Id);
 
             if (serviceToDelete == null)
             {
-                throw new NotFoundException(nameof(Compte), request.CompteId);
+                throw new NotFoundException(nameof(Compte), request.Id);
             }
 
             await _serviceRepository.DeleteAsync(serviceToDelete);
