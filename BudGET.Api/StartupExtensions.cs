@@ -38,14 +38,20 @@ namespace BudGET.Api
         public static WebApplication ConfigurePipeline(this WebApplication app)
         {
 
-            if (app.Environment.IsDevelopment())
+            //if (app.Environment.IsDevelopment())
+            //{
+            //    app.UseSwagger();
+            //    app.UseSwaggerUI(c =>
+            //    {
+            //        c.SwaggerEndpoint("/swagger/v1/swagger.json", "BudGET API");
+            //    });
+            //}
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BudGET API");
-                });
-            }
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BudGET API");
+            });
 
             app.UseHttpsRedirection();
 
