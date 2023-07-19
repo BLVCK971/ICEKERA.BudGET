@@ -11,11 +11,11 @@ public class BudGETDbContext : DbContext
 
     }
 
-    public DbSet<Budget> Budgets { get; set; }
-    public DbSet<Compte> Comptes { get; set; }
-    public DbSet<Depense> Depenses { get; set; }
-    public DbSet<Objectif> Objectifs { get; set; }
-    public DbSet<Salaire> Salaires { get; set; }
+    public DbSet<Budget>? Budgets { get; set; }
+    public DbSet<Compte>? Comptes { get; set; }
+    public DbSet<Depense>? Depenses { get; set; }
+    public DbSet<Objectif>? Objectifs { get; set; }
+    public DbSet<Salaire>? Salaires { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
