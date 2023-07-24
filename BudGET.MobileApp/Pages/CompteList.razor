@@ -1,0 +1,68 @@
+﻿@page "/comptelist"
+@using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.CompteViewModels;
+<h3>CompteList</h3>
+
+
+
+<div class="m-2 d-flex justify-content-end">
+    <button @onclick="AddNewEvent" class="me-1">Add event</button>
+    @*<button @onclick="ExportEvents">Export events</button>*@
+</div>
+
+
+
+@if (Comptes == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Event name</th>
+                <th>Event date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ev in Comptes)
+            {
+                <tr>
+                    @*<td><img src="@(ev.ImageUrl)" class="event-image" /></td>*@
+                    <td class="event-name">@ev.Intitule </td>
+                    <td class="event-date">@ev.Montant </td>
+                    <td>
+                        <a href="@($"eventdetails/{ev.Id}")" class="event-purchase-button btn">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+@code {
+    [Inject]
+    public ICompteDataService CompteDataService { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public ICollection<CompteListViewModel> Comptes { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Comptes = await CompteDataService.GetAllComptes();
+    }
+
+    protected void AddNewEvent()
+    {
+        NavigationManager.NavigateTo("/counter");
+    }
+}

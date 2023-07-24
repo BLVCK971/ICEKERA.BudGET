@@ -5,3 +5,13 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+<button @onclick="ToComptes" class="me-1">Add event</button>
+@code{
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    protected void ToComptes()
+    {
+        NavigationManager.NavigateTo("/CompteList");
+    }
+}

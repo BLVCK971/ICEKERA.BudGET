@@ -32,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudGET.Application.UnitTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudGET.Persistence.IntegrationTests", "BudGET.Persistence.IntegrationTests\BudGET.Persistence.IntegrationTests.csproj", "{E5E6A8C6-500A-4BB8-BAE6-E07830FAE323}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudGET.MobileApp", "BudGET.MobileApp\BudGET.MobileApp.csproj", "{C4304A41-3A6C-4BAC-9422-0E6017019A60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudGET.MobileApp", "BudGET.MobileApp\BudGET.MobileApp.csproj", "{C4304A41-3A6C-4BAC-9422-0E6017019A60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
