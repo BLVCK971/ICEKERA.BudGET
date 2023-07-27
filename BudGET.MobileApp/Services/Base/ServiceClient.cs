@@ -251,13 +251,11 @@ namespace BudGET.MobileApp.Services
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.19.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Client : IClient
     {
-        private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
-        public Client(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public Client(System.Net.Http.HttpClient httpClient)
         {
-            BaseUrl = baseUrl;
             _httpClient = httpClient;
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(CreateSerializerSettings);
         }
@@ -267,12 +265,6 @@ namespace BudGET.MobileApp.Services
             var settings = new Newtonsoft.Json.JsonSerializerSettings();
             UpdateJsonSerializerSettings(settings);
             return settings;
-        }
-
-        public string BaseUrl
-        {
-            get { return _baseUrl; }
-            set { _baseUrl = value; }
         }
 
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
@@ -296,7 +288,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<BudgetListVm>> GetAllBudgetsAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Budget/all");
+            urlBuilder_.Append("api/Budget/all");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -373,7 +365,7 @@ namespace BudGET.MobileApp.Services
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Budget/{id}");
+            urlBuilder_.Append("api/Budget/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -451,7 +443,7 @@ namespace BudGET.MobileApp.Services
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Budget/{id}");
+            urlBuilder_.Append("api/Budget/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -534,7 +526,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task<CreateBudgetCommandResponse> AddBudgetAsync(CreateBudgetCommand body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Budget");
+            urlBuilder_.Append("api/Budget");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -612,7 +604,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task UpdateBudgetAsync(UpdateBudgetCommand body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Budget");
+            urlBuilder_.Append("api/Budget");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -698,7 +690,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<CompteListVm>> GetAllComptesAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Compte/all");
+            urlBuilder_.Append("api/Compte/all");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -775,7 +767,7 @@ namespace BudGET.MobileApp.Services
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Compte/{id}");
+            urlBuilder_.Append("api/Compte/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -853,7 +845,7 @@ namespace BudGET.MobileApp.Services
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Compte/{id}");
+            urlBuilder_.Append("api/Compte/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -936,7 +928,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task<CreateCompteCommandResponse> AddCompteAsync(CreateCompteCommand body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Compte");
+            urlBuilder_.Append("api/Compte");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1014,7 +1006,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task UpdateCompteAsync(UpdateCompteCommand body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Compte");
+            urlBuilder_.Append("api/Compte");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1100,7 +1092,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<DepenseListVm>> GetAllDepensesAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Depense/all");
+            urlBuilder_.Append("api/Depense/all");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1177,7 +1169,7 @@ namespace BudGET.MobileApp.Services
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Depense/{id}");
+            urlBuilder_.Append("api/Depense/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1255,7 +1247,7 @@ namespace BudGET.MobileApp.Services
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Depense/{id}");
+            urlBuilder_.Append("api/Depense/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1338,7 +1330,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task<CreateDepenseCommandResponse> AddDepenseAsync(CreateDepenseCommand body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Depense");
+            urlBuilder_.Append("api/Depense");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1416,7 +1408,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task UpdateDepenseAsync(UpdateDepenseCommand body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Depense");
+            urlBuilder_.Append("api/Depense");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1502,7 +1494,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ObjectifListVm>> GetAllObjectifsAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Objectif/all");
+            urlBuilder_.Append("api/Objectif/all");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1579,7 +1571,7 @@ namespace BudGET.MobileApp.Services
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Objectif/{id}");
+            urlBuilder_.Append("api/Objectif/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1657,7 +1649,7 @@ namespace BudGET.MobileApp.Services
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Objectif/{id}");
+            urlBuilder_.Append("api/Objectif/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1740,7 +1732,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task<CreateObjectifCommandResponse> AddObjectifAsync(CreateObjectifCommand body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Objectif");
+            urlBuilder_.Append("api/Objectif");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1818,7 +1810,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task UpdateObjectifAsync(UpdateObjectifCommand body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Objectif");
+            urlBuilder_.Append("api/Objectif");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1904,7 +1896,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<SalaireListVm>> GetAllSalairesAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Salaire/all");
+            urlBuilder_.Append("api/Salaire/all");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1981,7 +1973,7 @@ namespace BudGET.MobileApp.Services
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Salaire/{id}");
+            urlBuilder_.Append("api/Salaire/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2059,7 +2051,7 @@ namespace BudGET.MobileApp.Services
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Salaire/{id}");
+            urlBuilder_.Append("api/Salaire/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2142,7 +2134,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task<CreateSalaireCommandResponse> AddSalaireAsync(CreateSalaireCommand body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Salaire");
+            urlBuilder_.Append("api/Salaire");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2220,7 +2212,7 @@ namespace BudGET.MobileApp.Services
         public virtual async System.Threading.Tasks.Task UpdateSalaireAsync(UpdateSalaireCommand body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Salaire");
+            urlBuilder_.Append("api/Salaire");
 
             var client_ = _httpClient;
             var disposeClient_ = false;

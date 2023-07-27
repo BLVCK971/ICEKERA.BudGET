@@ -46,6 +46,7 @@ namespace BudGET.Application.Profiles
             CreateMap<Compte, CompteDetailVm>().ReverseMap();
 
             CreateMap<Compte, CreateCompteCommand>().ReverseMap();
+            CreateMap<Compte, CreateCompteDto>().ReverseMap();
             CreateMap<Compte, DeleteCompteCommand>().ReverseMap();
             CreateMap<Compte, UpdateCompteCommand>().ReverseMap();
 

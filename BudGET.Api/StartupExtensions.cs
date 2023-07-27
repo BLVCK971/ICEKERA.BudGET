@@ -40,20 +40,14 @@ namespace BudGET.Api
 
             //if (app.Environment.IsDevelopment())
             //{
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI(c =>
-            //    {
-            //        c.SwaggerEndpoint("/swagger/v1/swagger.json", "BudGET API");
-            //    });
-            //}
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BudGET API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "RASPI BudGET API");
             });
+            //}
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             //app.UseRouting();
             
@@ -107,7 +101,7 @@ namespace BudGET.Api
 
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Version = "v1",
+                    Version = "v2",
                     Title = "BudGET API",
 
                 });
