@@ -1,0 +1,68 @@
+﻿@page "/dashboard"
+@using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.CompteViewModels;
+@using System.Globalization;
+
+
+
+<h3>DashBoard</h3>
+<button @onclick="AddNewEvent" class="me-1">
+    <div class="CompteCourantButtonTitle">Compte Courant :</div>
+    <div class="CompteCourantButtonTitle">@compteCourant.Montant</div>
+</button>
+<button @onclick="AddNewEvent" class="EconomieButton me-1">
+    <div class="CompteCourantButtonTitle">Economies :</div>
+    <div class="CompteCourantButtonTitle">@economies.Sum(x => x.Montant)</div>
+</button>
+<button @onclick="AddNewEvent" class="BudgetRemainingButton me-1">
+    <div class="CompteCourantButtonTitle">Budget restant du mois de @DateTime.Now.Month.ToString()</div>
+    <div class="CompteCourantButtonTitle">@compteCourant.Montant</div>
+</button>
+<button @onclick="AddNewEvent" class="ReportingsButton me-1">
+    <div class="CompteCourantButtonTitle">Reporting</div>
+</button>
+<button @onclick="AddNewEvent" class="me-1">
+    <div class="CompteCourantButtonTitle">Compte Courant :</div>
+</button>
+<button @onclick="AddNewEvent" class="me-1">
+    <div class="CompteCourantButtonTitle">Compte Courant :</div>
+</button>
+
+
+@code {
+    [Inject]
+    public ICompteDataService compteDataService { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public ICollection<CompteListViewModel> comptes { get; set; }
+
+    CompteListViewModel compteCourant;
+    List<CompteListViewModel> economies;
+    string Mois;
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        comptes = await compteDataService.GetAllComptes();
+        var compteCourant = comptes.FirstOrDefault();
+        if (compteCourant != null)
+        {
+            economies = comptes.Where(compte => compte != compteCourant).ToList();
+        }
+        
+        var styles = DateTimeStyles.AllowInnerWhite | DateTimeStyles.AllowLeadingWhite | DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AllowTrailingWhite;
+        var currentDate = DateTime.Now;
+        var french = CultureInfo.GetCultureInfo("fr-FR");
+        DateTime.TryParseExact(currentDate, "MMMM", french, DateTimeStyles.None, out Mois);
+
+
+
+    }
+
+    protected void AddNewEvent()
+    {
+        NavigationManager.NavigateTo("/counter");
+    }
+}
