@@ -6,6 +6,12 @@
 
 
 <h3>DashBoard</h3>
+@if (comptes == null || compteCourant == null || economies == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
 <button @onclick="AddNewEvent" class="me-1">
     <div class="CompteCourantButtonTitle">Compte Courant :</div>
     <div class="CompteCourantButtonTitle">@compteCourant.Montant</div>
@@ -15,7 +21,7 @@
     <div class="CompteCourantButtonTitle">@economies.Sum(x => x.Montant)</div>
 </button>
 <button @onclick="AddNewEvent" class="BudgetRemainingButton me-1">
-    <div class="CompteCourantButtonTitle">Budget restant du mois de @DateTime.Now.Month.ToString()</div>
+    <div class="CompteCourantButtonTitle">Budget restant du mois de @Mois</div>
     <div class="CompteCourantButtonTitle">@compteCourant.Montant</div>
 </button>
 <button @onclick="AddNewEvent" class="ReportingsButton me-1">
@@ -27,7 +33,7 @@
 <button @onclick="AddNewEvent" class="me-1">
     <div class="CompteCourantButtonTitle">Compte Courant :</div>
 </button>
-
+}
 
 @code {
     [Inject]
@@ -36,17 +42,17 @@
     [Inject]
     public NavigationManager NavigationManager { get; set; }
 
-    public ICollection<CompteListViewModel> comptes { get; set; }
+    public List<CompteListViewModel> comptes { get; set; }
 
     CompteListViewModel compteCourant;
     List<CompteListViewModel> economies;
-    string Mois;
+    DateTime Mois;
 
 
     protected async override Task OnInitializedAsync()
     {
         comptes = await compteDataService.GetAllComptes();
-        var compteCourant = comptes.FirstOrDefault();
+        compteCourant = comptes.Where(c => c.EstCompteCourant == true).First();
         if (compteCourant != null)
         {
             economies = comptes.Where(compte => compte != compteCourant).ToList();
@@ -55,7 +61,10 @@
         var styles = DateTimeStyles.AllowInnerWhite | DateTimeStyles.AllowLeadingWhite | DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AllowTrailingWhite;
         var currentDate = DateTime.Now;
         var french = CultureInfo.GetCultureInfo("fr-FR");
-        DateTime.TryParseExact(currentDate, "MMMM", french, DateTimeStyles.None, out Mois);
+        
+        //TODO : Actuellement on convertie en String pour ensuite reconvertir en DateTime, il faut trouver la méthode permettant de directement convertir en français le mois.
+        //DateTime.TryParseExact(currentDate.ToString(), "MMMM", french, DateTimeStyles.None, out Mois);
+        DateTime.TryParseExact(currentDate.ToString(), "MMMM", french, styles, out Mois);
 
 
 
