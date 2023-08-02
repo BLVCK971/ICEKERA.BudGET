@@ -22,7 +22,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore BudGET.Api
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test BudGET.Api --no-build --verbosity normal
     - name: Dotnet Publish
       run: dotnet publish BudGET.Api -c Release -o deploy
     - name: Copy via ssh
