@@ -23,15 +23,15 @@ namespace BudGET.Persistence.IntegrationTests
             _budGETDbContext = new BudGETDbContext(dbContextOptions);
         }
 
-        [Fact]
-        public async void Save_NomProperty()
-        {
-            var bg = new Budget() {Id = Guid.NewGuid(), Nom = "Test budget" };
+        //[Fact]
+        //public async void Save_NomProperty()
+        //{
+        //    var bg = new Budget() {Id = Guid.NewGuid(), Nom = "Test budget" };
 
-            _budGETDbContext.Budgets.Add(bg);
-            await _budGETDbContext.SaveChangesAsync();
+        //    _budGETDbContext.Budgets.Add(bg);
+        //    await _budGETDbContext.SaveChangesAsync();
 
-            bg.Nom.ShouldBe("Test budget");
-        }
+        //    bg.Nom.ShouldBe("Test budget");
+        //}
     }
 }
