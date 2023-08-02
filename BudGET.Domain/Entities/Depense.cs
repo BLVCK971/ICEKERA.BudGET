@@ -13,5 +13,7 @@ public class Depense : AuditableEntity
     public double Valeur { get; set; }
     public Guid BudgetId { get; set; }
     public Budget Budget { get; set; } = default!;
+    public Guid CompteId { get; set; }
+    public Compte CompteCredite { get; set; } = default!;
 }
 

@@ -50,6 +50,17 @@ namespace BudGET.Application.Profiles
             CreateMap<Compte, DeleteCompteCommand>().ReverseMap();
             CreateMap<Compte, UpdateCompteCommand>().ReverseMap();
 
+            // Compte DTOs
+            CreateMap<Compte, Features.Depenses.Commands.CreateDepense.CompteDto>();
+            CreateMap<Compte, Features.Depenses.Commands.UpdateDepense.CompteDto>();
+            CreateMap<Compte, Features.Depenses.Queries.GetDepensesList.CompteDto>();
+            CreateMap<Compte, Features.Depenses.Queries.GetDepenseDetail.CompteDto>();
+
+            CreateMap<Compte, Features.Salaires.Commands.CreateSalaire.CompteDto>();
+            CreateMap<Compte, Features.Salaires.Commands.UpdateSalaire.CompteDto>();
+            CreateMap<Compte, Features.Salaires.Queries.GetSalairesList.CompteDto>();
+            CreateMap<Compte, Features.Salaires.Queries.GetSalaireDetail.CompteDto>();
+
             //DepenseVMs
             CreateMap<Depense, DepenseListVm>().ReverseMap();
             CreateMap<Depense, DepenseDetailVm>().ReverseMap();
@@ -69,9 +80,10 @@ namespace BudGET.Application.Profiles
             CreateMap<Objectif, ObjectifDetailVm>().ReverseMap();
 
             CreateMap<Objectif, CreateObjectifCommand>().ReverseMap();
+            CreateMap<Objectif, CreateObjectifDto>().ReverseMap();
             CreateMap<Objectif, DeleteObjectifCommand>().ReverseMap();
             CreateMap<Objectif, UpdateObjectifCommand>().ReverseMap();
-
+            
             //Salaire
             CreateMap<Salaire, SalaireListVm>().ReverseMap();
             CreateMap<Salaire, SalaireDetailVm>().ReverseMap();

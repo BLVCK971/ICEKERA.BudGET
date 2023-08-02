@@ -9,5 +9,7 @@ public class DepenseListVm
     public double Valeur { get; set; }
     public Guid BudgetId { get; set; }
     public BudgetDto Budget { get; set; } = default!;
+    public Guid CompteId { get; set; }
+    public CompteDto CompteCredite { get; set; } = default!;
 }
 

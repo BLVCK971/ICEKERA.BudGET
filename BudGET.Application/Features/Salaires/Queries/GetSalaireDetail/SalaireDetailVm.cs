@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace BudGET.Application.Features.Salaires.Queries.GetSalaireDetail;
 
-namespace BudGET.Application.Features.Salaires.Queries.GetSalaireDetail
+public class SalaireDetailVm
 {
-    public class SalaireDetailVm
-    {
-        public string Nom { get; set; } = string.Empty;
-        public double Valeur { get; set; }
-    }
+    public string Nom { get; set; } = string.Empty;
+    public double Valeur { get; set; }
+    public Guid CompteId { get; set; }
+    public CompteDto CompteDebite { get; set; } = default!;
 }
 
