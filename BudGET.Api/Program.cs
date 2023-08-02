@@ -8,7 +8,7 @@ var app = builder
 //app.MapGet("/", () => "Hello World!");
 
 
-await app.ResetDatabaseAsync();
+//await app.ResetDatabaseAsync();
 
 app.Run();
 public partial class Program { }
