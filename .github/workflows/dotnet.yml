@@ -18,9 +18,9 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore BudGET.Api
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore BudGET.Api
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Dotnet Publish
@@ -28,7 +28,7 @@ jobs:
     - name: Copy via ssh
       uses: garygrossgarten/github-action-scp@v0.5.3
       with:
-        local: /home/runner/work/deferat/deferat/src/deploy/
+        local: deploy/
         remote: ${{ secrets.RASPI_SSH_TARGET }}
         host: ${{ secrets.RASPI_SSH_HOST }}
         username: ${{ secrets.RASPI_SSH_USER }}
