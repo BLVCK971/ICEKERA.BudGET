@@ -14,39 +14,59 @@ else
 {
 <button @onclick="AddNewEvent" class="me-1">
     <div class="CompteCourantButtonTitle">Compte Courant :</div>
-    <div class="CompteCourantButtonTitle">@compteCourant.Montant</div>
+    <div class="CompteCourantButtonValue">@compteCourant.Montant</div>
 </button>
 <button @onclick="AddNewEvent" class="EconomieButton me-1">
-    <div class="CompteCourantButtonTitle">Economies :</div>
-    <div class="CompteCourantButtonTitle">@economies.Sum(x => x.Montant)</div>
+    <div class="">Economies :</div>
+    <div class="">@economies.Sum(x => x.Montant)</div>
 </button>
 <button @onclick="AddNewEvent" class="BudgetRemainingButton me-1">
-    <div class="CompteCourantButtonTitle">Budget restant du mois de @Mois</div>
-    <div class="CompteCourantButtonTitle">@compteCourant.Montant</div>
+    <div class="">Budget restant du mois de @mois</div>
+        <div class="">Jours Restants : @joursRestantAvantSalaire</div>
+        <div class="">Avant 0 : @montantRestantParJourAvantZero</div>
+        <div class="">Avant Fin du Budget : @montantRestantParJourAvantFinBudget</div>
 </button>
 <button @onclick="AddNewEvent" class="ReportingsButton me-1">
-    <div class="CompteCourantButtonTitle">Reporting</div>
+    <div class="">Reporting</div>
 </button>
+    <button @onclick="AddNewEvent" class="me-1">
+        <div class="">Budgets</div>
+    </button>
 <button @onclick="AddNewEvent" class="me-1">
-    <div class="CompteCourantButtonTitle">Compte Courant :</div>
+    <div class="">Depenses</div>
 </button>
-<button @onclick="AddNewEvent" class="me-1">
-    <div class="CompteCourantButtonTitle">Compte Courant :</div>
-</button>
+    <button @onclick="AddNewEvent" class="me-1">
+        <div class="">Salaires</div>
+    </button>
+    <button @onclick="AddNewEvent" class="me-1">
+        <div class="">Objectifs</div>
+    </button>
 }
 
 @code {
+    // Services
     [Inject]
     public ICompteDataService compteDataService { get; set; }
-
     [Inject]
     public NavigationManager NavigationManager { get; set; }
 
+    // Données
     public List<CompteListViewModel> comptes { get; set; }
 
+    // Affichage
     CompteListViewModel compteCourant;
     List<CompteListViewModel> economies;
-    DateTime Mois;
+
+    string compteApresPrevu;
+
+    string mois;
+    string joursRestantAvantSalaire;
+    string montantRestantParJourAvantZero;
+    string montantRestantParJourApresPrevuAvantZero;
+    string montantRestantParJourAvantFinBudget; //TODO
+
+    string economiesSixProchainsMoisSiBudgetRespecte; //TODO
+    string economiesCinqProchainesAnneeSiBudgetRespecte; //TODO
 
 
     protected async override Task OnInitializedAsync()
@@ -58,16 +78,12 @@ else
             economies = comptes.Where(compte => compte != compteCourant).ToList();
         }
         
-        var styles = DateTimeStyles.AllowInnerWhite | DateTimeStyles.AllowLeadingWhite | DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AllowTrailingWhite;
-        var currentDate = DateTime.Now;
+        DateTime now = DateTime.Now;
         var french = CultureInfo.GetCultureInfo("fr-FR");
-        
-        //TODO : Actuellement on convertie en String pour ensuite reconvertir en DateTime, il faut trouver la méthode permettant de directement convertir en français le mois.
-        //DateTime.TryParseExact(currentDate.ToString(), "MMMM", french, DateTimeStyles.None, out Mois);
-        DateTime.TryParseExact(currentDate.ToString(), "MMMM", french, styles, out Mois);
-
-
-
+        mois = now.ToString("MMMM",french.DateTimeFormat);
+        var joursRestantAvantMois = ((new DateTime(now.Year, now.Month, 1).AddMonths(1) - now)).Days;
+        joursRestantAvantSalaire = joursRestantAvantMois.ToString();
+        montantRestantParJourAvantZero = (compteCourant.Montant / joursRestantAvantMois).ToString();
     }
 
     protected void AddNewEvent()
