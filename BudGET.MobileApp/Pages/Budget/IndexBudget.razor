@@ -1,0 +1,52 @@
+﻿@using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.BudgetViewModels;
+@page "/budget/indexbudget"
+
+<h3>Index</h3>
+<div class="m-2 d-flex justify-content-end">
+    <button @onclick="AddNew" class="me-1">Add Budget</button>
+</div>
+
+@if (Liste == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Montant</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ev in Liste)
+            {
+                <tr>
+                    <td class="event-name">@ev.Nom </td>
+                    <td class="event-date">@ev.Montant </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    [Inject]
+    public IBudgetDataService BudgetDataService { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    private ICollection<BudgetListViewModel> Liste { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Liste = await BudgetDataService.GetAllBudgets();
+    }
+
+    protected void AddNew()
+    {
+        NavigationManager.NavigateTo("/budget/createbudget");
+    }
+}

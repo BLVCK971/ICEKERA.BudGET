@@ -1,0 +1,71 @@
+﻿@page "/budget/createbudget"
+@using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.BudgetViewModels;
+
+
+<h3>Création d'un nouveau budget :</h3>
+@if (LastSubmitResult != null)
+{
+    <h2>
+        Last submit status: @LastSubmitResult
+    </h2>
+}
+
+
+<main class="form-signin w-100 m-auto">
+    <EditForm Model=@NewBudget OnValidSubmit=@ValidFormSubmitted OnInvalidSubmit=@InvalidFormSubmitted>
+        <div class="form-floating">
+            <InputText @bind-Value=NewBudget.Nom type="text" class="form-control" required id="floatingInput" placeholder="(Alimentation,Essence..)" />
+            <label for="floatingInput">Nom du Budget</label>
+        </div>
+        <div class="form-floating">
+            <InputNumber @bind-Value=NewBudget.Montant type="number" class="form-control" id="floatingPassword" />
+            <label for="floatingPassword">Montant du Budget</label>
+        </div>
+        <div class="form-check text-start my-3">
+            <InputCheckbox @bind-Value=NewBudget.Exception class="form-check-input" required type="checkbox" id="flexCheckDefault" />
+             <label class="form-check-label" for="flexCheckDefault">Exception ?</label>
+        </div>
+        <button class="btn btn-primary w-100 py-2 " type="submit"  disabled=@loading>
+                @if (loading){<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>}
+            Valider
+        </button>
+  </EditForm>
+</main>
+
+
+@code {
+    [Inject]
+    private IBudgetDataService BudgetDataService { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    private BudgetViewModel NewBudget = new BudgetViewModel() {Nom = ""};
+
+    private string LastSubmitResult;
+    private bool loading = false;
+
+    async Task ValidFormSubmitted(EditContext editContext)
+    {
+        loading = true;
+        var result = await BudgetDataService.CreateBudget(NewBudget);
+        if (result.Success)
+        {
+            LastSubmitResult = "OnValidSubmit was executed";
+            loading = false;
+            NavigationManager.NavigateTo("/budget/indexbudget");
+        }
+        else
+        {
+            InvalidFormSubmitted(editContext);
+            loading = false;
+        }
+
+    }
+
+    void InvalidFormSubmitted(EditContext editContext)
+    {
+        LastSubmitResult = "Veuillez remplir les champs correctement";
+    }
+}

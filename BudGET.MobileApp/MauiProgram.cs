@@ -35,11 +35,11 @@ public static class MauiProgram
         builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://budget.ypepin.com"));
 
         builder.Services.AddSingleton<WeatherForecastService>();
-        //builder.Services.AddScoped<IBudgetDataService, BudgetDataService>();
+        builder.Services.AddScoped<IBudgetDataService, BudgetDataService>();
         builder.Services.AddScoped<ICompteDataService, CompteDataService>();
-        //builder.Services.AddScoped<IDepenseDataService, DepenseDataService>();
-        //builder.Services.AddScoped<IObjectifDataService, ObjectifDataService>();
-        //builder.Services.AddScoped<ISalaireDataService, SalaireDataService>();
+        builder.Services.AddScoped<IDepenseDataService, DepenseDataService>();
+        builder.Services.AddScoped<IObjectifDataService, ObjectifDataService>();
+        builder.Services.AddScoped<ISalaireDataService, SalaireDataService>();
 
         return builder.Build();
     }

@@ -58,7 +58,7 @@ else
 
     protected async override Task OnInitializedAsync()
     {
-        Comptes = await CompteDataService.GetAllComptes();
+        Comptes = await CompteDataService.GetAllComptes().ConfigureAwait(false);
     }
 
     protected void AddNewEvent()
