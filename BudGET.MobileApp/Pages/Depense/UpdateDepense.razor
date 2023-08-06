@@ -1,6 +1,7 @@
 @page "/depense/updatedepense/{id:guid}"
 @using BudGET.MobileApp.Contracts;
 @using BudGET.MobileApp.ViewModels.BudgetViewModels;
+@using BudGET.MobileApp.ViewModels.CompteViewModels;
 @using BudGET.MobileApp.ViewModels.DepenseViewModels;
 
 
@@ -11,7 +12,7 @@
         Last submit status: @LastSubmitResult
     </h2>
 }
-@if (UpdatedElement == null && Budgets == null)
+@if (UpdatedElement == null || Budgets == null || Comptes == null)
 {
     <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
 }
@@ -27,6 +28,10 @@ else
                 <InputNumber @bind-Value=UpdatedElement.Valeur type="number" class="form-control" id="floatingPassword" />
                 <label for="floatingPassword">Valeur de la Dépense</label>
             </div>
+            <div class="form-check text-start my-3">
+                <InputCheckbox @bind-Value=UpdatedElement.Prevu class="form-check-input" type="checkbox" id="flexCheckDefault" />
+                <label class="form-check-label" for="flexCheckDefault">Exception ?</label>
+            </div>
             <div class="form-floating">
                 <InputSelect @bind-Value=UpdatedElement.BudgetId class="form-control" id="floatingPassword">
                     @foreach (var budget in Budgets)
@@ -35,6 +40,15 @@ else
                     }
                 </InputSelect>
                 <label for="floatingPassword">Budget Associé</label>
+            </div>
+            <div class="form-floating">
+                <InputSelect @bind-Value=UpdatedElement.CompteId class="form-control" id="floatingPassword">
+                    @foreach (var compte in Comptes)
+                    {
+                        <option value="@compte.Id">@compte.Intitule</option>
+                    }
+                </InputSelect>
+                <label for="floatingPassword">CompteCredité</label>
             </div>
             <button @onclick="Back" class="btn btn-secondary w-100 py-2 mb-2" disabled=@loading>Back</button>
             <button class="btn btn-primary w-100 py-2 " type="submit" disabled=@loading>
@@ -54,8 +68,11 @@ else
     [Inject]
     public IBudgetDataService BudgetDataService { get; set; }
     [Inject]
+    public ICompteDataService CompteDataService { get; set; }
+    [Inject]
     private NavigationManager NavigationManager { get; set; }
     private ICollection<BudgetListViewModel> Budgets { get; set; }
+    private ICollection<CompteListViewModel> Comptes { get; set; }
 
     [Parameter]
     public Guid id { get; set; }
@@ -68,12 +85,14 @@ else
     protected async override Task OnInitializedAsync()
     {
         Budgets = await BudgetDataService.GetAllBudgets();
+        Comptes = await CompteDataService.GetAllComptes();
         UpdatedElement = await DepenseDataService.GetDepenseById(id);
     }
 
     async Task ValidFormSubmitted(EditContext editContext)
     {
         loading = true;
+        UpdatedElement.CompteCredite = await CompteDataService.GetCompteById(UpdatedElement.CompteId);
         var result = await DepenseDataService.UpdateDepense(UpdatedElement);
         if (result.Success)
         {
@@ -95,6 +114,6 @@ else
     }
     protected void Back()
     {
-        NavigationManager.NavigateTo("/indexdepense");
+        NavigationManager.NavigateTo("depense/indexdepense");
     }
 }

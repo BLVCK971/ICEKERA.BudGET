@@ -22,7 +22,8 @@ else
                 <th>Date</th>
                 <th>Intitulé</th>
                 <th>Montant</th>
-                <th>Depense associé</th>
+                <th>Prévu ?</th>
+                <th>Budget associé</th>
                 <th>Commandes</th>
             </tr>
         </thead>
@@ -33,6 +34,13 @@ else
                     <td>@ev.Date </td>
                     <td>@ev.Nom </td>
                     <td>@ev.Valeur €</td>
+                    <th>
+                        @if (@ev.Prevu == true)
+                        {
+                            <span class="oi oi-check" aria-hidden="true"></span>
+                        }
+                        else { }
+                    </th>
                     <th>@ev.Budget.Nom</th>
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic example">

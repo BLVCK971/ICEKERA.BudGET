@@ -13,12 +13,14 @@ namespace BudGET.Application.Features.Salaires.Commands.CreateSalaire
     public class CreateSalaireCommandHandler : IRequestHandler<CreateSalaireCommand, CreateSalaireCommandResponse>
     {
         private readonly IAsyncRepository<Salaire> _salaireRepository;
+        private readonly IAsyncRepository<Compte> _compteRepository;
         private readonly IMapper _mapper;
 
-        public CreateSalaireCommandHandler(IMapper mapper, IAsyncRepository<Salaire> salaireRepository)
+        public CreateSalaireCommandHandler(IMapper mapper, IAsyncRepository<Salaire> salaireRepository, IAsyncRepository<Compte> compteRepository)
         {
             _mapper = mapper;
             _salaireRepository = salaireRepository;
+            _compteRepository = compteRepository;
         }
 
         public async Task<CreateSalaireCommandResponse> Handle(CreateSalaireCommand request, CancellationToken cancellationToken)
@@ -39,7 +41,8 @@ namespace BudGET.Application.Features.Salaires.Commands.CreateSalaire
             }
             if (createSalaireCommandResponse.Success)
             {
-                var salaire = new Salaire() { Nom = request.Nom, Valeur = request.Valeur };
+                var compteDebite = await _compteRepository.GetByIdAsync(request.CompteId);
+                var salaire = new Salaire() { Nom = request.Nom, Valeur = request.Valeur, CompteId = request.CompteId, CompteDebite = compteDebite};
                 salaire = await _salaireRepository.AddAsync(salaire);
                 createSalaireCommandResponse.Salaire = _mapper.Map<CreateSalaireDto>(salaire);
             }

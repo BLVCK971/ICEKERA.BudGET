@@ -1,5 +1,6 @@
 @page "/salaire/updatesalaire/{id:guid}"
 @using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.CompteViewModels;
 @using BudGET.MobileApp.ViewModels.SalaireViewModels;
 
 
@@ -10,7 +11,7 @@
         Last submit status: @LastSubmitResult
     </h2>
 }
-@if (UpdatedElement == null)
+@if (UpdatedElement == null || Comptes == null)
 {
     <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
 }
@@ -25,6 +26,15 @@ else
             <div class="form-floating">
                 <InputNumber @bind-Value=UpdatedElement.Valeur type="number" class="form-control" id="floatingPassword" />
                 <label for="floatingPassword">Montant du Salaire</label>
+            </div>
+            <div class="form-floating">
+                <InputSelect @bind-Value=UpdatedElement.CompteId class="form-control" id="floatingPassword">
+                    @foreach (var compte in Comptes)
+                    {
+                        <option value="@compte.Id">@compte.Intitule</option>
+                    }
+                </InputSelect>
+                <label for="floatingPassword">CompteCredité</label>
             </div>
             <button @onclick="Back" class="btn btn-secondary w-100 py-2 mb-2" disabled=@loading>Back</button>
             <button class="btn btn-primary w-100 py-2 " type="submit" disabled=@loading>
@@ -41,10 +51,11 @@ else
 @code {
     [Inject]
     private ISalaireDataService SalaireDataService { get; set; }
-
+    [Inject]
+    public ICompteDataService CompteDataService { get; set; }
     [Inject]
     private NavigationManager NavigationManager { get; set; }
-
+    private ICollection<CompteListViewModel> Comptes { get; set; }
     [Parameter]
     public Guid id { get; set; }
 
@@ -55,12 +66,15 @@ else
 
     protected async override Task OnInitializedAsync()
     {
+        Comptes = await CompteDataService.GetAllComptes();
         UpdatedElement = await SalaireDataService.GetSalaireById(id);
     }
 
     async Task ValidFormSubmitted(EditContext editContext)
     {
         loading = true;
+        UpdatedElement.CompteDebite = await CompteDataService.GetCompteById(UpdatedElement.CompteId);
+
         var result = await SalaireDataService.UpdateSalaire(UpdatedElement);
         if (result.Success)
         {
