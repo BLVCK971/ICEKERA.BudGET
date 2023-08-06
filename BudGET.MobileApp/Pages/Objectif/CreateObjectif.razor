@@ -1,0 +1,75 @@
+@page "/objectif/createobjectif"
+@using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.ObjectifViewModels;
+
+
+<h3>Création d'un nouveau objectif :</h3>
+@if (LastSubmitResult != null)
+{
+    <h2>
+        Last submit status: @LastSubmitResult
+    </h2>
+}
+
+
+<main class="form-signin w-100 m-auto">
+    <EditForm Model=@NewElement OnValidSubmit=@ValidFormSubmitted OnInvalidSubmit=@InvalidFormSubmitted>
+        <div class="form-floating">
+            <InputText @bind-Value=NewElement.Nom type="text" class="form-control" required id="floatingInput" placeholder="(Alimentation,Essence..)" />
+            <label for="floatingInput">Nom du Objectif</label>
+        </div>
+        <div class="form-floating">
+            <InputNumber @bind-Value=NewElement.Valeur type="number" class="form-control" id="floatingPassword" />
+            <label for="floatingPassword">Montant du Objectif</label>
+        </div>
+        <button @onclick="Back" class="btn btn-secondary w-100 py-2 mb-2" disabled=@loading>Back</button>
+        <button class="btn btn-primary w-100 py-2 " type="submit" disabled=@loading>
+            @if (loading)
+            {
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+            }
+            Valider
+        </button>
+    </EditForm>
+</main>
+
+
+@code {
+    [Inject]
+    private IObjectifDataService ObjectifDataService { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    private ObjectifViewModel NewElement = new ObjectifViewModel() { Nom = "" };
+
+    private string LastSubmitResult;
+    private bool loading = false;
+
+    async Task ValidFormSubmitted(EditContext editContext)
+    {
+        loading = true;
+        var result = await ObjectifDataService.CreateObjectif(NewElement);
+        if (result.Success)
+        {
+            LastSubmitResult = "OnValidSubmit was executed";
+            loading = false;
+            NavigationManager.NavigateTo("/objectif/indexobjectif");
+        }
+        else
+        {
+            InvalidFormSubmitted(editContext);
+            loading = false;
+        }
+
+    }
+
+    void InvalidFormSubmitted(EditContext editContext)
+    {
+        LastSubmitResult = "Veuillez remplir les champs correctement";
+    }
+    protected void Back()
+    {
+        NavigationManager.NavigateTo("/indexobjectif");
+    }
+}

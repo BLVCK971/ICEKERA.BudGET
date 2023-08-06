@@ -1,6 +1,6 @@
 ﻿@using BudGET.MobileApp.Contracts;
-@using BudGET.MobileApp.ViewModels.BudgetViewModels;
-@page "/budget/indexbudget"
+@using BudGET.MobileApp.ViewModels.DepenseViewModels;
+@page "/depense/indexdepense"
 
 <h3>Index</h3>
 
@@ -19,9 +19,10 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Nom</th>
+                <th>Date</th>
+                <th>Intitulé</th>
                 <th>Montant</th>
-                <th>Exceptionnel ?</th>
+                <th>Depense associé</th>
                 <th>Commandes</th>
             </tr>
         </thead>
@@ -29,17 +30,14 @@ else
             @foreach (var ev in Liste)
             {
                 <tr>
+                    <td>@ev.Date </td>
                     <td>@ev.Nom </td>
-                    <td>@ev.Montant €</td>
-                    <th>@if (@ev.Exception == true)
-                        {
-                            <span class="oi oi-check" aria-hidden="true"></span>
-                        }
-                        else { }</th>
+                    <td>@ev.Valeur €</td>
+                    <th>@ev.Budget.Nom</th>
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button @onclick="@(e => UpdateElement(ev.Id))" type="button" class="btn btn-primary">Modifier</button>
-                            <button @onclick="@(e => DeleteElement(ev.Id))" type="button" class="btn btn-danger" >Supprimer</button>
+                            <button @onclick="@(e => DeleteElement(ev.Id))" type="button" class="btn btn-danger">Supprimer</button>
                         </div>
                     </td>
                 </tr>
@@ -49,30 +47,30 @@ else
 }
 @code {
     [Inject]
-    public IBudgetDataService BudgetDataService { get; set; }
+    public IDepenseDataService DepenseDataService { get; set; }
 
     [Inject]
     public NavigationManager NavigationManager { get; set; }
 
-    private ICollection<BudgetListViewModel> Liste { get; set; }
+    private ICollection<DepenseListViewModel> Liste { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
-        Liste = await BudgetDataService.GetAllBudgets();
+        Liste = await DepenseDataService.GetAllDepenses();
     }
 
     protected void AddElement()
     {
-        NavigationManager.NavigateTo("/budget/createbudget");
+        NavigationManager.NavigateTo("/depense/createdepense");
     }
     protected void UpdateElement(Guid ElementId)
     {
-        NavigationManager.NavigateTo("/budget/updatebudget/"+ ElementId);
+        NavigationManager.NavigateTo("/depense/updatedepense/" + ElementId);
     }
     protected void DeleteElement(Guid ElementId)
     {
-        var response = BudgetDataService.DeleteBudget(ElementId);
-        NavigationManager.NavigateTo("/budget/indexbudget", true);
+        var response = DepenseDataService.DeleteDepense(ElementId);
+        NavigationManager.NavigateTo("/depense/indexdepense", true);
     }
     protected void Back()
     {

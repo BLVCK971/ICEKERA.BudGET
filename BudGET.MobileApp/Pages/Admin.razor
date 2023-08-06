@@ -1,21 +1,33 @@
 ﻿@page "/admin"
 <h3>Admin</h3>
-
+    <nav class="flex-column">
+        <div class="nav-item px-3">
 <NavLink class="nav-link" href="/budget/indexbudget">
-    <span class="oi oi-plus" aria-hidden="true"></span> Budget
+            <span class="oi oi-pie-chart" aria-hidden="true"></span> Budget
 </NavLink>
-<NavLink class="nav-link" href="Compte/index">
-    <span class="oi oi-plus" aria-hidden="true"></span> Compte
+        </div>
+        <div class="nav-item px-3">
+        <NavLink class="nav-link" href="/compte/indexcompte">
+    <span class="oi oi-task" aria-hidden="true"></span> Compte
 </NavLink>
-<NavLink class="nav-link" href="Depense/index">
-    <span class="oi oi-plus" aria-hidden="true"></span> Depense
+        </div>
+        <div class="nav-item px-3">
+<NavLink class="nav-link" href="/depense/indexdepense">
+    <span class="oi oi-cart" aria-hidden="true"></span> Depense
 </NavLink>
-<NavLink class="nav-link" href="Objectif/index">
-    <span class="oi oi-plus" aria-hidden="true"></span> Objectif
+        </div>
+        <div class="nav-item px-3">
+<NavLink class="nav-link" href="/objectif/indexobjectif">
+            <span class="oi oi-task" aria-hidden="true"></span> Objectif
 </NavLink>
-<NavLink class="nav-link" href="Salaire/index">
-    <span class="oi oi-plus" aria-hidden="true"></span> Salaire
+        </div>
+        <div class="nav-item px-3">
+<NavLink class="nav-link" href="/salaire/indexsalaire">
+    <span class="oi oi-dollar" aria-hidden="true"></span> Salaire
 </NavLink>
+</div>
+</nav>
+
 
 @code {
 

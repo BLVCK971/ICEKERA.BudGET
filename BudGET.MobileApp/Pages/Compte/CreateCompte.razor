@@ -1,0 +1,79 @@
+@page "/compte/createcompte"
+@using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.CompteViewModels;
+
+
+<h3>Création d'un nouveau compte :</h3>
+@if (LastSubmitResult != null)
+{
+    <h2>
+        Last submit status: @LastSubmitResult
+    </h2>
+}
+
+
+<main class="form-signin w-100 m-auto">
+    <EditForm Model=@NewElement OnValidSubmit=@ValidFormSubmitted OnInvalidSubmit=@InvalidFormSubmitted>
+        <div class="form-floating">
+            <InputText @bind-Value=NewElement.Intitule type="text" class="form-control" required id="floatingInput" placeholder="(Alimentation,Essence..)" />
+            <label for="floatingInput">Nom du Compte</label>
+        </div>
+        <div class="form-floating">
+            <InputNumber @bind-Value=NewElement.Montant type="number" class="form-control" id="floatingPassword" />
+            <label for="floatingPassword">Montant du Compte</label>
+        </div>
+        <div class="form-check text-start my-3">
+            <InputCheckbox @bind-Value=NewElement.EstCompteCourant class="form-check-input" type="checkbox" id="flexCheckDefault" />
+            <label class="form-check-label" for="flexCheckDefault">Exception ?</label>
+        </div>
+        <button @onclick="Back" class="btn btn-secondary w-100 py-2 mb-2" disabled=@loading>Back</button>
+        <button class="btn btn-primary w-100 py-2 " type="submit" disabled=@loading>
+            @if (loading)
+            {
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+            }
+            Valider
+        </button>
+    </EditForm>
+</main>
+
+
+@code {
+    [Inject]
+    private ICompteDataService CompteDataService { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    private CompteViewModel NewElement = new CompteViewModel() { Intitule = "" };
+
+    private string LastSubmitResult;
+    private bool loading = false;
+
+    async Task ValidFormSubmitted(EditContext editContext)
+    {
+        loading = true;
+        var result = await CompteDataService.CreateCompte(NewElement);
+        if (result.Success)
+        {
+            LastSubmitResult = "OnValidSubmit was executed";
+            loading = false;
+            NavigationManager.NavigateTo("/compte/indexcompte");
+        }
+        else
+        {
+            InvalidFormSubmitted(editContext);
+            loading = false;
+        }
+
+    }
+
+    void InvalidFormSubmitted(EditContext editContext)
+    {
+        LastSubmitResult = "Veuillez remplir les champs correctement";
+    }
+    protected void Back()
+    {
+        NavigationManager.NavigateTo("/indexcompte");
+    }
+}

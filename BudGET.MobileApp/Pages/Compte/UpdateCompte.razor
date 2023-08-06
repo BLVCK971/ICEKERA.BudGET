@@ -1,0 +1,91 @@
+@page "/compte/updatecompte/{id:guid}"
+@using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.CompteViewModels;
+
+
+<h3>Modification d'un compte :</h3>
+@if (LastSubmitResult != null)
+{
+    <h2>
+        Last submit status: @LastSubmitResult
+    </h2>
+}
+@if (UpdatedElement == null)
+{
+    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+}
+else
+{
+    <main class="form-signin w-100 m-auto">
+        <EditForm Model=@UpdatedElement OnValidSubmit=@ValidFormSubmitted OnInvalidSubmit=@InvalidFormSubmitted>
+            <div class="form-floating">
+                <InputText @bind-Value=UpdatedElement.Intitule type="text" class="form-control" required id="floatingInput" placeholder="(Alimentation,Essence..)" />
+                <label for="floatingInput">Nom du Compte</label>
+            </div>
+            <div class="form-floating">
+                <InputNumber @bind-Value=UpdatedElement.Montant type="number" class="form-control" id="floatingPassword" />
+                <label for="floatingPassword">Montant du Compte</label>
+            </div>
+            <div class="form-check text-start my-3">
+                <InputCheckbox @bind-Value=UpdatedElement.EstCompteCourant class="form-check-input" type="checkbox" id="flexCheckDefault" />
+                <label class="form-check-label" for="flexCheckDefault">Exception ?</label>
+            </div>
+            <button @onclick="Back" class="btn btn-secondary w-100 py-2 mb-2" disabled=@loading>Back</button>
+            <button class="btn btn-primary w-100 py-2 " type="submit" disabled=@loading>
+                @if (loading)
+                {
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                }
+                Valider
+            </button>
+        </EditForm>
+    </main>
+}
+
+@code {
+    [Inject]
+    private ICompteDataService CompteDataService { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    [Parameter]
+    public Guid id { get; set; }
+
+    private CompteViewModel UpdatedElement;
+
+    private string LastSubmitResult;
+    private bool loading = false;
+
+    protected async override Task OnInitializedAsync()
+    {
+        UpdatedElement = await CompteDataService.GetCompteById(id);
+    }
+
+    async Task ValidFormSubmitted(EditContext editContext)
+    {
+        loading = true;
+        var result = await CompteDataService.UpdateCompte(UpdatedElement);
+        if (result.Success)
+        {
+            LastSubmitResult = "OnValidSubmit was executed";
+            loading = false;
+            NavigationManager.NavigateTo("/compte/indexcompte");
+        }
+        else
+        {
+            InvalidFormSubmitted(editContext);
+            loading = false;
+        }
+
+    }
+
+    void InvalidFormSubmitted(EditContext editContext)
+    {
+        LastSubmitResult = "Veuillez remplir les champs correctement";
+    }
+    protected void Back()
+    {
+        NavigationManager.NavigateTo("/indexcompte");
+    }
+}

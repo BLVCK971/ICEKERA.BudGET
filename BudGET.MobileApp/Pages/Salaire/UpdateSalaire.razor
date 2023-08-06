@@ -1,0 +1,87 @@
+@page "/salaire/updatesalaire/{id:guid}"
+@using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.SalaireViewModels;
+
+
+<h3>Modification d'un salaire :</h3>
+@if (LastSubmitResult != null)
+{
+    <h2>
+        Last submit status: @LastSubmitResult
+    </h2>
+}
+@if (UpdatedElement == null)
+{
+    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+}
+else
+{
+    <main class="form-signin w-100 m-auto">
+        <EditForm Model=@UpdatedElement OnValidSubmit=@ValidFormSubmitted OnInvalidSubmit=@InvalidFormSubmitted>
+            <div class="form-floating">
+                <InputText @bind-Value=UpdatedElement.Nom type="text" class="form-control" required id="floatingInput" placeholder="(Alimentation,Essence..)" />
+                <label for="floatingInput">Nom du Salaire</label>
+            </div>
+            <div class="form-floating">
+                <InputNumber @bind-Value=UpdatedElement.Valeur type="number" class="form-control" id="floatingPassword" />
+                <label for="floatingPassword">Montant du Salaire</label>
+            </div>
+            <button @onclick="Back" class="btn btn-secondary w-100 py-2 mb-2" disabled=@loading>Back</button>
+            <button class="btn btn-primary w-100 py-2 " type="submit" disabled=@loading>
+                @if (loading)
+                {
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                }
+                Valider
+            </button>
+        </EditForm>
+    </main>
+}
+
+@code {
+    [Inject]
+    private ISalaireDataService SalaireDataService { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    [Parameter]
+    public Guid id { get; set; }
+
+    private SalaireViewModel UpdatedElement;
+
+    private string LastSubmitResult;
+    private bool loading = false;
+
+    protected async override Task OnInitializedAsync()
+    {
+        UpdatedElement = await SalaireDataService.GetSalaireById(id);
+    }
+
+    async Task ValidFormSubmitted(EditContext editContext)
+    {
+        loading = true;
+        var result = await SalaireDataService.UpdateSalaire(UpdatedElement);
+        if (result.Success)
+        {
+            LastSubmitResult = "OnValidSubmit was executed";
+            loading = false;
+            NavigationManager.NavigateTo("/salaire/indexsalaire");
+        }
+        else
+        {
+            InvalidFormSubmitted(editContext);
+            loading = false;
+        }
+
+    }
+
+    void InvalidFormSubmitted(EditContext editContext)
+    {
+        LastSubmitResult = "Veuillez remplir les champs correctement";
+    }
+    protected void Back()
+    {
+        NavigationManager.NavigateTo("/indexsalaire");
+    }
+}
