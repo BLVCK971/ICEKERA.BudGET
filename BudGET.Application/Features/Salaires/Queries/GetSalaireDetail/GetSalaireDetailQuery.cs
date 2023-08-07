@@ -9,7 +9,7 @@ namespace BudGET.Application.Features.Salaires.Queries.GetSalaireDetail
 {
     public class GetSalaireDetailQuery : IRequest<SalaireDetailVm>
     {
-        public Guid SalaireId { get; set; }
+        public Guid Id { get; set; }
     }
 }
 
