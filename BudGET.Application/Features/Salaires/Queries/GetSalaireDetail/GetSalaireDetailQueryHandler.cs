@@ -23,7 +23,7 @@ namespace BudGET.Application.Features.Salaires.Queries.GetSalaireDetail
 
             public async Task<SalaireDetailVm> Handle(GetSalaireDetailQuery request, CancellationToken cancellationToken)
             {
-                var @service = await _serviceRepository.GetByIdAsync(request.SalaireId);
+                var @service = await _serviceRepository.GetByIdAsync(request.Id);
                 var serviceDetailDto = _mapper.Map<SalaireDetailVm>(@service);
 
                 return serviceDetailDto;

@@ -30,7 +30,7 @@ public class SalaireController : ControllerBase
     [HttpGet("{id}", Name = "GetSalaireById")]
     public async Task<ActionResult<SalaireDetailVm>> GetSalaireById(Guid id)
     {
-        var getSalaireDetailQuery = new GetSalaireDetailQuery() { SalaireId = id };
+        var getSalaireDetailQuery = new GetSalaireDetailQuery() { Id = id };
         return Ok(await _mediator.Send(getSalaireDetailQuery));
     }
 
