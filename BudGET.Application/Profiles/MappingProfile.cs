@@ -51,13 +51,9 @@ namespace BudGET.Application.Profiles
             CreateMap<Compte, UpdateCompteCommand>().ReverseMap();
 
             // Compte DTOs
-            CreateMap<Compte, Features.Depenses.Commands.CreateDepense.CompteDto>();
-            CreateMap<Compte, Features.Depenses.Commands.UpdateDepense.CompteDto>();
             CreateMap<Compte, Features.Depenses.Queries.GetDepensesList.CompteDto>();
             CreateMap<Compte, Features.Depenses.Queries.GetDepenseDetail.CompteDto>();
 
-            CreateMap<Compte, Features.Salaires.Commands.CreateSalaire.CompteDto>();
-            CreateMap<Compte, Features.Salaires.Commands.UpdateSalaire.CompteDto>();
             CreateMap<Compte, Features.Salaires.Queries.GetSalairesList.CompteDto>();
             CreateMap<Compte, Features.Salaires.Queries.GetSalaireDetail.CompteDto>();
 
@@ -70,8 +66,6 @@ namespace BudGET.Application.Profiles
             CreateMap<Depense, UpdateDepenseCommand>().ReverseMap();
 
             // Depense DTOs
-            CreateMap<Budget, Features.Depenses.Commands.CreateDepense.BudgetDto>() ;
-            CreateMap<Budget, Features.Depenses.Commands.UpdateDepense.BudgetDto>();
             CreateMap<Budget, Features.Depenses.Queries.GetDepensesList.BudgetDto>();
             CreateMap<Budget, Features.Depenses.Queries.GetDepenseDetail.BudgetDto>();
 

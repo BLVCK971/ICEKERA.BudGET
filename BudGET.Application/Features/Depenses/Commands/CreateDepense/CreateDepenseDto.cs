@@ -10,8 +10,6 @@ public class CreateDepenseDto
     public bool Prevu { get; set; } = false;
 
     public Guid BudgetId { get; set; }
-    public BudgetDto Budget { get; set; } = default!;
     public Guid CompteId { get; set; }
-    public Compte CompteCredite { get; set; } = default!;
 }
 

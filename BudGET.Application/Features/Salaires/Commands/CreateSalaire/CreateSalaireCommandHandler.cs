@@ -41,8 +41,7 @@ namespace BudGET.Application.Features.Salaires.Commands.CreateSalaire
             }
             if (createSalaireCommandResponse.Success)
             {
-                var compteDebite = await _compteRepository.GetByIdAsync(request.CompteId);
-                var salaire = new Salaire() { Nom = request.Nom, Valeur = request.Valeur, CompteId = request.CompteId, CompteDebite = compteDebite};
+                var salaire = new Salaire() { Nom = request.Nom, Valeur = request.Valeur, CompteId = request.CompteId};
                 salaire = await _salaireRepository.AddAsync(salaire);
                 createSalaireCommandResponse.Salaire = _mapper.Map<CreateSalaireDto>(salaire);
             }

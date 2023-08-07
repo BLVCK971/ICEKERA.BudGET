@@ -17,8 +17,6 @@ public class UpdateDepenseCommand : IRequest
     public bool Prevu { get; set; } = false;
 
     public Guid BudgetId { get; set; }
-    public BudgetDto Budget { get; set; } = default!;
     public Guid CompteId { get; set; }
-    public CompteDto CompteCredite { get; set; } = default!;
 }
 
