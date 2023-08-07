@@ -1,8 +1,8 @@
 ﻿using BudGET.Application.Contracts.Persistence;
 using BudGET.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 
 namespace BudGET.Persistence
 {
@@ -22,7 +22,7 @@ namespace BudGET.Persistence
             services.AddScoped<IObjectifRepository, ObjectifRepository>();
             services.AddScoped<ISalaireRepository, SalaireRepository>();
 
-            return services;    
+            return services;
         }
     }
 }

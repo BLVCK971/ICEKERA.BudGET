@@ -2,11 +2,6 @@ using AutoMapper;
 using BudGET.Application.Contracts.Persistence;
 using BudGET.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BudGET.Application.Features.Budgets.Commands.CreateBudget
 {
@@ -39,7 +34,7 @@ namespace BudGET.Application.Features.Budgets.Commands.CreateBudget
             }
             if (createBudgetCommandResponse.Success)
             {
-                var budget = new Budget() { Id = Guid.NewGuid(),Nom = request.Nom, Montant = request.Montant, Exception = request.Exception };
+                var budget = new Budget() { Id = Guid.NewGuid(), Nom = request.Nom, Montant = request.Montant, Exception = request.Exception };
                 budget = await _budgetRepository.AddAsync(budget);
                 createBudgetCommandResponse.Budget = _mapper.Map<CreateBudgetDto>(budget);
             }

@@ -1,6 +1,5 @@
 ﻿using BudGET.Domain.Entities;
 using BudGET.Persistence;
-using System;
 
 namespace BudGET.Api.IntegrationTests.Base
 {
@@ -13,8 +12,8 @@ namespace BudGET.Api.IntegrationTests.Base
             var drugsGuid = Guid.Parse("{BF3F3002-7E53-441E-8B76-F6280BE284AA}");
             var fightClubGuid = Guid.Parse("{FE98F549-E790-4E9F-AA16-18C2292A2EE9}");
 
-            context.Budgets.Add(new Budget 
-            { 
+            context.Budgets.Add(new Budget
+            {
                 Id = bitchesGuid,
                 Nom = "Bitches",
                 Montant = 250,

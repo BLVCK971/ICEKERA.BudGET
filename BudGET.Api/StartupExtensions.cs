@@ -1,9 +1,7 @@
 ﻿using BudGET.Api.Middleware;
 using BudGET.Application;
-using BudGET.Application.Contracts;
 using BudGET.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 //using Serilog;
 
@@ -50,7 +48,7 @@ namespace BudGET.Api
             //app.UseHttpsRedirection();
 
             //app.UseRouting();
-            
+
             app.UseAuthentication();
 
             app.UseCustomExceptionHandler();

@@ -2,11 +2,6 @@ using AutoMapper;
 using BudGET.Application.Contracts.Persistence;
 using BudGET.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BudGET.Application.Features.Depenses.Commands.CreateDepense
 {
@@ -39,7 +34,7 @@ namespace BudGET.Application.Features.Depenses.Commands.CreateDepense
             }
             if (createDepenseCommandResponse.Success)
             {
-                var service = new Depense() { Nom = request.Nom, Date = request.Date, Valeur = request.Valeur, Prevu = request.Prevu};
+                var service = new Depense() { Nom = request.Nom, Date = request.Date, Valeur = request.Valeur, Prevu = request.Prevu };
                 service = await _serviceRepository.AddAsync(service);
                 createDepenseCommandResponse.Depense = _mapper.Map<CreateDepenseDto>(service);
             }

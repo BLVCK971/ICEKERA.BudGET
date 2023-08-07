@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BudGET.Domain.Entities;
-
 namespace BudGET.Application.Features.Depenses.Queries.GetDepenseDetail;
 
 public class DepenseDetailVm

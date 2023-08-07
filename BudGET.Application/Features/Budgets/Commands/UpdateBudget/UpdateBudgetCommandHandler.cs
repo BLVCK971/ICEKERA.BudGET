@@ -3,17 +3,12 @@ using BudGET.Application.Contracts.Persistence;
 using BudGET.Application.Exceptions;
 using BudGET.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BudGET.Application.Features.Budgets.Commands.UpdateBudget
 {
     public class UpdateBudgetCommandHandler : IRequestHandler<UpdateBudgetCommand>
     {
-          private readonly IAsyncRepository<Budget> _eventRepository;
+        private readonly IAsyncRepository<Budget> _eventRepository;
         private readonly IMapper _mapper;
 
         public UpdateBudgetCommandHandler(IMapper mapper, IAsyncRepository<Budget> serviceRepository)

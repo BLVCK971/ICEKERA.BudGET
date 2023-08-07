@@ -3,17 +3,12 @@ using BudGET.Application.Contracts.Persistence;
 using BudGET.Application.Exceptions;
 using BudGET.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BudGET.Application.Features.Salaires.Commands.UpdateSalaire
 {
     public class UpdateSalaireCommandHandler : IRequestHandler<UpdateSalaireCommand>
     {
-          private readonly IAsyncRepository<Salaire> _eventRepository;
+        private readonly IAsyncRepository<Salaire> _eventRepository;
         private readonly IMapper _mapper;
 
         public UpdateSalaireCommandHandler(IMapper mapper, IAsyncRepository<Salaire> serviceRepository)

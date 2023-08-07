@@ -13,7 +13,7 @@ namespace BudGET.Api.Controllers;
 public class BudgetController : ControllerBase
 {
     private readonly IMediator _mediator;
-    
+
     public BudgetController(IMediator mediator)
     {
         _mediator = mediator;
@@ -41,7 +41,7 @@ public class BudgetController : ControllerBase
         return Ok(response);
     }
 
-    [HttpPut(Name ="UpdateBudget")]
+    [HttpPut(Name = "UpdateBudget")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
@@ -57,7 +57,7 @@ public class BudgetController : ControllerBase
     [ProducesDefaultResponseType]
     public async Task<ActionResult> Delete(Guid id)
     {
-        var deleteBudgetCommand = new DeleteBudgetCommand() { Id = id};
+        var deleteBudgetCommand = new DeleteBudgetCommand() { Id = id };
         await _mediator.Send(deleteBudgetCommand);
         return NoContent();
     }

@@ -1,8 +1,4 @@
-using BudGET.Application.Contracts;
-using BudGET.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Moq;
-using Shouldly;
 
 namespace BudGET.Persistence.IntegrationTests
 {

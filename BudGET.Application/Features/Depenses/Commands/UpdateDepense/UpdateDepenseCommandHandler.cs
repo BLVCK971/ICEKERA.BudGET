@@ -3,17 +3,12 @@ using BudGET.Application.Contracts.Persistence;
 using BudGET.Application.Exceptions;
 using BudGET.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BudGET.Application.Features.Depenses.Commands.UpdateDepense
 {
     public class UpdateDepenseCommandHandler : IRequestHandler<UpdateDepenseCommand>
     {
-          private readonly IAsyncRepository<Depense> _eventRepository;
+        private readonly IAsyncRepository<Depense> _eventRepository;
         private readonly IMapper _mapper;
 
         public UpdateDepenseCommandHandler(IMapper mapper, IAsyncRepository<Depense> serviceRepository)

@@ -1,5 +1,3 @@
-using BudGET.Domain.Entities;
-
 namespace BudGET.Application.Features.Salaires.Commands.CreateSalaire;
 
 public class CreateSalaireDto

@@ -1,5 +1,3 @@
-using BudGET.Domain.Entities;
-
 namespace BudGET.Application.Features.Depenses.Queries.GetDepensesList;
 public class DepenseListVm
 {

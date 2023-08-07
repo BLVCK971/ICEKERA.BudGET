@@ -2,12 +2,6 @@ using AutoMapper;
 using BudGET.Application.Contracts.Persistence;
 using BudGET.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BudGET.Application.Features.Comptes.Commands.CreateCompte
 {
@@ -40,7 +34,7 @@ namespace BudGET.Application.Features.Comptes.Commands.CreateCompte
             }
             if (createCompteCommandResponse.Success)
             {
-                var compte = new Compte() { Intitule = request.Intitule, Montant = request.Montant , EstCompteCourant = request.EstCompteCourant};
+                var compte = new Compte() { Intitule = request.Intitule, Montant = request.Montant, EstCompteCourant = request.EstCompteCourant };
                 compte = await _compteRepository.AddAsync(compte);
                 createCompteCommandResponse.Compte = _mapper.Map<CreateCompteDto>(compte);
             }

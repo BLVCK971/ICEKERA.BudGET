@@ -1,5 +1,4 @@
 ﻿using BudGET.Domain.Common;
-using System;
 
 namespace BudGET.Domain.Entities;
 

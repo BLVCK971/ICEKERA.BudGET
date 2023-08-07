@@ -26,7 +26,7 @@ namespace BudGET.Api.IntegrationTests.Controllers
             var responseString = await response.Content.ReadAsStringAsync();
 
             var result = JsonSerializer.Deserialize<List<BudgetListVm>>(responseString);
-            
+
             Assert.IsType<List<BudgetListVm>>(result);
             Assert.NotEmpty(result);
         }

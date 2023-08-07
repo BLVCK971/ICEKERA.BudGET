@@ -61,7 +61,7 @@ namespace BudGET.Application.Profiles
             CreateMap<Depense, DepenseListVm>().ReverseMap();
             CreateMap<Depense, DepenseDetailVm>().ReverseMap();
 
-            CreateMap<Depense, CreateDepenseCommand>().ReverseMap();    
+            CreateMap<Depense, CreateDepenseCommand>().ReverseMap();
             CreateMap<Depense, DeleteDepenseCommand>().ReverseMap();
             CreateMap<Depense, UpdateDepenseCommand>().ReverseMap();
 
@@ -77,7 +77,7 @@ namespace BudGET.Application.Profiles
             CreateMap<Objectif, CreateObjectifDto>().ReverseMap();
             CreateMap<Objectif, DeleteObjectifCommand>().ReverseMap();
             CreateMap<Objectif, UpdateObjectifCommand>().ReverseMap();
-            
+
             //Salaire
             CreateMap<Salaire, SalaireListVm>().ReverseMap();
             CreateMap<Salaire, SalaireDetailVm>().ReverseMap();

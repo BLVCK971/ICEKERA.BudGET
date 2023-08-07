@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BudGET.Application.Exceptions
+﻿namespace BudGET.Application.Exceptions
 {
     public class NotFoundException : ApplicationException
     {

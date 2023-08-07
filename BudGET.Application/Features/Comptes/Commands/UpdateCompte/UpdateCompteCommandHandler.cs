@@ -3,17 +3,12 @@ using BudGET.Application.Contracts.Persistence;
 using BudGET.Application.Exceptions;
 using BudGET.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BudGET.Application.Features.Comptes.Commands.UpdateCompte
 {
     public class UpdateCompteCommandHandler : IRequestHandler<UpdateCompteCommand>
     {
-          private readonly IAsyncRepository<Compte> _eventRepository;
+        private readonly IAsyncRepository<Compte> _eventRepository;
         private readonly IMapper _mapper;
 
         public UpdateCompteCommandHandler(IMapper mapper, IAsyncRepository<Compte> serviceRepository)

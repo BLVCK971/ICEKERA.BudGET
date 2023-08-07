@@ -2,11 +2,6 @@ using AutoMapper;
 using BudGET.Application.Contracts.Persistence;
 using BudGET.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BudGET.Application.Features.Salaires.Commands.CreateSalaire
 {
@@ -41,7 +36,7 @@ namespace BudGET.Application.Features.Salaires.Commands.CreateSalaire
             }
             if (createSalaireCommandResponse.Success)
             {
-                var salaire = new Salaire() { Nom = request.Nom, Valeur = request.Valeur, CompteId = request.CompteId};
+                var salaire = new Salaire() { Nom = request.Nom, Valeur = request.Valeur, CompteId = request.CompteId };
                 salaire = await _salaireRepository.AddAsync(salaire);
                 createSalaireCommandResponse.Salaire = _mapper.Map<CreateSalaireDto>(salaire);
             }

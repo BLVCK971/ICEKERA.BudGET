@@ -5,7 +5,7 @@ namespace BudGET.Persistence;
 
 public class BudGETDbContext : DbContext
 {
-    public BudGETDbContext(DbContextOptions<BudGETDbContext> options) 
+    public BudGETDbContext(DbContextOptions<BudGETDbContext> options)
         : base(options)
     {
 
