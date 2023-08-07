@@ -1,4 +1,5 @@
 ﻿@using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.CompteViewModels;
 @using BudGET.MobileApp.ViewModels.SalaireViewModels;
 @page "/salaire/indexsalaire"
 
@@ -43,16 +44,25 @@ else
 }
 @code {
     [Inject]
-    public ISalaireDataService SalaireDataService { get; set; }
+    public ISalaireDataService _salaireDataService { get; set; }
+    [Inject]
+    public ICompteDataService _compteDataService { get; set; }
 
     [Inject]
     public NavigationManager NavigationManager { get; set; }
 
     private ICollection<SalaireListViewModel> Liste { get; set; }
+    private ICollection<CompteListViewModel> ListeComptes { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
-        Liste = await SalaireDataService.GetAllSalaires();
+        //Todo : Une requête si possible
+        Liste = await _salaireDataService.GetAllSalaires();
+        ListeComptes = await _compteDataService.GetAllComptes();
+        foreach(var e in Liste)
+        {
+            e.CompteDebite = ListeComptes.Where(x => x.Id == e.CompteId).FirstOrDefault();
+        }
     }
 
     protected void AddElement()
@@ -65,7 +75,7 @@ else
     }
     protected void DeleteElement(Guid ElementId)
     {
-        var response = SalaireDataService.DeleteSalaire(ElementId);
+        var response = _salaireDataService.DeleteSalaire(ElementId);
         NavigationManager.NavigateTo("/salaire/indexsalaire", true);
     }
     protected void Back()

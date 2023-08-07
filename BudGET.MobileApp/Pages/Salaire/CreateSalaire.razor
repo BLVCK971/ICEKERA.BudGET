@@ -37,7 +37,6 @@ else
             </InputSelect>
             <label for="floatingPassword">CompteCredité</label>
         </div>
-        <button @onclick="Back" class="btn btn-secondary w-100 py-2 mb-2" disabled=@loading>Back</button>
         <button class="btn btn-primary w-100 py-2 " type="submit" disabled=@loading>
             @if (loading)
             {
@@ -45,6 +44,8 @@ else
             }
             Valider
         </button>
+            <button @onclick="Back" class="btn btn-secondary w-100 py-2 mb-2" disabled=@loading>Back</button>
+
     </EditForm>
 </main>
 }
@@ -70,7 +71,6 @@ else
     async Task ValidFormSubmitted(EditContext editContext)
     {
         loading = true;
-        NewElement.CompteDebite = await CompteDataService.GetCompteById(NewElement.CompteId);
         var result = await SalaireDataService.CreateSalaire(NewElement);
         if (result.Success)
         {

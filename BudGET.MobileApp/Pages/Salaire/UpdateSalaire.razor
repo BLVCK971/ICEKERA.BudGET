@@ -74,10 +74,10 @@ else
     {
         loading = true;
         UpdatedElement.CompteDebite = await CompteDataService.GetCompteById(UpdatedElement.CompteId);
-
         var result = await SalaireDataService.UpdateSalaire(UpdatedElement);
         if (result.Success)
         {
+            
             LastSubmitResult = "OnValidSubmit was executed";
             loading = false;
             NavigationManager.NavigateTo("/salaire/indexsalaire");

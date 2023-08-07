@@ -6,7 +6,7 @@ namespace BudGET.MobileApp.Services.Base
     public class BaseDataService
     {
         protected readonly ILocalStorageService _localStorage;
-        
+
         protected IClient _client;
 
         public BaseDataService(IClient client, ILocalStorageService localStorage)

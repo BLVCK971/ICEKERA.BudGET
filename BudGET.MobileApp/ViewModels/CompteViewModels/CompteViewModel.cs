@@ -9,7 +9,7 @@ public class CompteViewModel
 {
     public Guid Id { get; set; }
     public string Intitule { get; set; } = string.Empty;
-    public double Montant { get; set; } = double.MinValue;
+    public double Montant { get; set; }
     public bool EstCompteCourant { get; set; } = false;
     public ICollection<DepenseViewModel> Depenses { get; set; }
     public ICollection<BudgetViewModel> Budgets { get; set; }
