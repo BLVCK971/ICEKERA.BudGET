@@ -6,6 +6,5 @@ public class SalaireDetailVm
     public string Nom { get; set; } = string.Empty;
     public double Valeur { get; set; }
     public Guid CompteId { get; set; }
-    public CompteDto CompteDebite { get; set; } = default!;
 }
 
