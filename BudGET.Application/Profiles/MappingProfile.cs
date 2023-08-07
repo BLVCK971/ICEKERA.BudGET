@@ -80,6 +80,7 @@ namespace BudGET.Application.Profiles
 
             //Salaire
             CreateMap<Salaire, SalaireListVm>().ReverseMap();
+            CreateMap<Salaire, SalaireDto>().ReverseMap();
             CreateMap<Salaire, SalaireDetailVm>().ReverseMap();
 
             CreateMap<Salaire, CreateSalaireCommand>().ReverseMap();
