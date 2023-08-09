@@ -58,6 +58,7 @@ namespace BudGET.Application.Profiles
             CreateMap<Depense, DepenseDetailVm>().ReverseMap();
 
             CreateMap<Depense, CreateDepenseCommand>().ReverseMap();
+            CreateMap<Depense, CreateDepenseDto>().ReverseMap();
             CreateMap<Depense, DeleteDepenseCommand>().ReverseMap();
             CreateMap<Depense, UpdateDepenseCommand>().ReverseMap();
 
