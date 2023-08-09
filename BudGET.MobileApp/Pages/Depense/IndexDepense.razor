@@ -1,4 +1,5 @@
 ﻿@using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.BudgetViewModels;
 @using BudGET.MobileApp.ViewModels.DepenseViewModels;
 @page "/depense/indexdepense"
 
@@ -55,16 +56,25 @@ else
 }
 @code {
     [Inject]
-    public IDepenseDataService DepenseDataService { get; set; }
+    public IDepenseDataService _depenseDataService { get; set; }
+    [Inject]
+    public IBudgetDataService _budgetDataService { get; set; }
 
     [Inject]
     public NavigationManager NavigationManager { get; set; }
 
     private ICollection<DepenseListViewModel> Liste { get; set; }
+    private ICollection<BudgetListViewModel> ListeBudgets { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
-        Liste = await DepenseDataService.GetAllDepenses();
+        //Todo : Une requête si possible
+        Liste = await _depenseDataService.GetAllDepenses();
+        ListeBudgets = await _budgetDataService.GetAllBudgets();
+        foreach (var e in Liste)
+        {
+            e.Budget = ListeBudgets.Where(x => x.Id == e.BudgetId).FirstOrDefault();
+        }
     }
 
     protected void AddElement()
@@ -77,7 +87,7 @@ else
     }
     protected void DeleteElement(Guid ElementId)
     {
-        var response = DepenseDataService.DeleteDepense(ElementId);
+        var response = _depenseDataService.DeleteDepense(ElementId);
         NavigationManager.NavigateTo("/depense/indexdepense", true);
     }
     protected void Back()

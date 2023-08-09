@@ -11,6 +11,8 @@ public class DepenseListViewModel
     public double Valeur { get; set; }
     public bool Prevu { get; set; } = false;
 
-    public BudgetViewModel Budget { get; set; } = default!;
-    public CompteViewModel CompteCredite { get; set; } = default!;
+    public Guid BudgetId { get; set; }
+    public BudgetListViewModel Budget { get; set; } = default!;
+    public Guid CompteId { get; set; }
+    public CompteListViewModel CompteCredite { get; set; } = default!;
 }

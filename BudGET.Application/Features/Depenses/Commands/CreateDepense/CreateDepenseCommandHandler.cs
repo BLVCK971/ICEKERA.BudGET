@@ -34,7 +34,7 @@ namespace BudGET.Application.Features.Depenses.Commands.CreateDepense
             }
             if (createDepenseCommandResponse.Success)
             {
-                var service = new Depense() { Nom = request.Nom, Date = request.Date, Valeur = request.Valeur, Prevu = request.Prevu };
+                var service = new Depense() { Nom = request.Nom, Date = request.Date, Valeur = request.Valeur, Prevu = request.Prevu, CompteId = request.CompteId, BudgetId = request.BudgetId };
                 service = await _serviceRepository.AddAsync(service);
                 createDepenseCommandResponse.Depense = _mapper.Map<CreateDepenseDto>(service);
             }
