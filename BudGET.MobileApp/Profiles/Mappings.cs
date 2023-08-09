@@ -18,7 +18,6 @@ namespace GloboTicket.TicketManagement.App.Profiles
             CreateMap<UpdateBudgetCommand, BudgetViewModel>().ReverseMap();
             CreateMap<BudgetDetailVm, BudgetViewModel>().ReverseMap();
             CreateMap<BudgetDto, BudgetViewModel>().ReverseMap();
-            CreateMap<BudgetDto2, BudgetViewModel>().ReverseMap();
             CreateMap<BudgetListVm, BudgetListViewModel>().ReverseMap();
 
             CreateMap<CreateCompteCommand, CompteViewModel>().ReverseMap();
