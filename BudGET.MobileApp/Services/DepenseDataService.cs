@@ -19,7 +19,7 @@ public class DepenseDataService : BaseDataService, IDepenseDataService
     public async Task<List<DepenseListViewModel>> GetAllDepenses()
     {
         var allDepenses = await _client.GetAllDepensesAsync();
-        var mappedDepenses = _mapper.Map<ICollection<DepenseListViewModel>>(allDepenses);
+        var mappedDepenses = _mapper.Map<List<DepenseListViewModel>>(allDepenses);
         return mappedDepenses.ToList();
     }
 

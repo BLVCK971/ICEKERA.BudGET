@@ -2637,7 +2637,7 @@ namespace BudGET.MobileApp.Services
         public string Nom { get; set; }
 
         [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Date { get; set; }
+        public System.DateTime Date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("valeur", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Valeur { get; set; }
@@ -2679,7 +2679,7 @@ namespace BudGET.MobileApp.Services
         public string Nom { get; set; }
 
         [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Date { get; set; }
+        public System.DateTime Date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("valeur", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Valeur { get; set; }
@@ -2719,7 +2719,7 @@ namespace BudGET.MobileApp.Services
         public string Nom { get; set; }
 
         [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Date { get; set; }
+        public System.DateTime Date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("valeur", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Valeur { get; set; }
@@ -2745,7 +2745,7 @@ namespace BudGET.MobileApp.Services
         public string Nom { get; set; }
 
         [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Date { get; set; }
+        public System.DateTime Date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("valeur", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Valeur { get; set; }
@@ -2771,10 +2771,13 @@ namespace BudGET.MobileApp.Services
         public string Nom { get; set; }
 
         [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Date { get; set; }
+        public System.DateTime Date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("valeur", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Valeur { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("prevu", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool Prevu { get; set; }
 
         [Newtonsoft.Json.JsonProperty("budgetId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid BudgetId { get; set; }
@@ -2794,10 +2797,13 @@ namespace BudGET.MobileApp.Services
         public string Nom { get; set; }
 
         [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Date { get; set; }
+        public System.DateTime Date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("valeur", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Valeur { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("prevu", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool Prevu { get; set; }
 
         [Newtonsoft.Json.JsonProperty("budgetId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid BudgetId { get; set; }
@@ -2994,13 +3000,13 @@ namespace BudGET.MobileApp.Services
         public string CreatedBy { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedDate { get; set; }
+        public System.DateTime CreatedDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastModifiedBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string LastModifiedBy { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastModifiedDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? LastModifiedDate { get; set; }
+        public System.DateTime? LastModifiedDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
@@ -3023,13 +3029,13 @@ namespace BudGET.MobileApp.Services
         public string CreatedBy { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedDate { get; set; }
+        public System.DateTime CreatedDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastModifiedBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string LastModifiedBy { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastModifiedDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? LastModifiedDate { get; set; }
+        public System.DateTime? LastModifiedDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
@@ -3064,13 +3070,13 @@ namespace BudGET.MobileApp.Services
         public string CreatedBy { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedDate { get; set; }
+        public System.DateTime CreatedDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastModifiedBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string LastModifiedBy { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastModifiedDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? LastModifiedDate { get; set; }
+        public System.DateTime? LastModifiedDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
@@ -3079,7 +3085,7 @@ namespace BudGET.MobileApp.Services
         public string Nom { get; set; }
 
         [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Date { get; set; }
+        public System.DateTime Date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("valeur", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double Valeur { get; set; }
@@ -3108,13 +3114,13 @@ namespace BudGET.MobileApp.Services
         public string CreatedBy { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedDate { get; set; }
+        public System.DateTime CreatedDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastModifiedBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string LastModifiedBy { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastModifiedDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? LastModifiedDate { get; set; }
+        public System.DateTime? LastModifiedDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
@@ -3134,13 +3140,13 @@ namespace BudGET.MobileApp.Services
         public string CreatedBy { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedDate { get; set; }
+        public System.DateTime CreatedDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastModifiedBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string LastModifiedBy { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastModifiedDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? LastModifiedDate { get; set; }
+        public System.DateTime? LastModifiedDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
