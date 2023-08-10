@@ -27,13 +27,23 @@ public static class MauiProgram
         builder.Services.AddBlazorWebViewDeveloperTools();
         builder.Logging.AddDebug(); ;
 #endif
-
-        builder.Services.AddSingleton(new HttpClient
+        bool BIG_DEBUG = false;
+        
+        if (BIG_DEBUG)
         {
-            BaseAddress = new Uri("https://budget.ypepin.com")
-        });
-        builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://budget.ypepin.com"));
-
+            builder.Services.AddSingleton(new HttpClient
+            {
+                BaseAddress = new Uri("https://localhost:7116")
+            });
+            builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://localhost:7116"));
+        }
+        else { 
+            builder.Services.AddSingleton(new HttpClient
+            {
+                BaseAddress = new Uri("https://budget.ypepin.com")
+            });
+            builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://budget.ypepin.com"));
+        }
         builder.Services.AddSingleton<WeatherForecastService>();
         builder.Services.AddScoped<IBudgetDataService, BudgetDataService>();
         builder.Services.AddScoped<ICompteDataService, CompteDataService>();

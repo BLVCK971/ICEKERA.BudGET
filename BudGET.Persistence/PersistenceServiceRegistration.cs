@@ -13,7 +13,7 @@ namespace BudGET.Persistence
 
             services.AddDbContext<BudGETDbContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("BudGETConnectionString")));
-
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
             services.AddScoped<IBudgetRepository, BudgetRepository>();
