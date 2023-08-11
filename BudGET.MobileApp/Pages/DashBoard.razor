@@ -2,6 +2,7 @@
 @using BudGET.MobileApp.Contracts;
 @using BudGET.MobileApp.ViewModels.CompteViewModels;
 @using System.Globalization;
+@using BudGET.MobileApp.ViewModels.DepenseViewModels;
 
 
 
@@ -26,27 +27,45 @@ else
         <div class="">Avant 0 : @montantRestantParJourAvantZero</div>
         <div class="">Avant Fin du Budget : @montantRestantParJourAvantFinBudget</div>
 </button>
-<button @onclick="AddNewEvent" class="ReportingsButton me-1">
-    <div class="">Reporting</div>
-</button>
-    <button @onclick="AddNewEvent" class="me-1">
-        <div class="">Budgets</div>
-    </button>
-<button @onclick="AddNewEvent" class="me-1">
-    <div class="">Depenses</div>
-</button>
-    <button @onclick="AddNewEvent" class="me-1">
-        <div class="">Salaires</div>
-    </button>
-    <button @onclick="AddNewEvent" class="me-1">
-        <div class="">Objectifs</div>
-    </button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                @foreach(var month in Months)
+                {
+                    <th>@month.Key</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            @foreach (var month in Months)
+            {
+                <td>
+@*                    <tr>
+                            @month.Value[0]
+                    </tr>*@
+                    <tr>
+                            @*Compte n-1 avant prévu après salaire*@ @month.Value[1] €
+                    </tr>
+                        @*Compte après dépenses exceptionnelles*@
+                        @*Dépenses prévues*@
+                        @*Compte après prévu/redondant*@
+                        @*Compte après budget = n*@
+                </td>
+            }
+            </tr>
+        </tbody>          
+    </table>
+
 }
 
 @code {
     // Services
     [Inject]
     public ICompteDataService compteDataService { get; set; }
+    [Inject]
+    public ISalaireDataService _salaireDataService { get; set; }
     [Inject]
     public NavigationManager NavigationManager { get; set; }
 
@@ -56,6 +75,7 @@ else
     // Affichage
     CompteListViewModel compteCourant;
     List<CompteListViewModel> economies;
+    Dictionary<string, List<string>> Months;
 
     string compteApresPrevu;
 
@@ -68,23 +88,48 @@ else
     string economiesSixProchainsMoisSiBudgetRespecte; //TODO
     string economiesCinqProchainesAnneeSiBudgetRespecte; //TODO
 
+    List<DepenseListViewModel> ListeDeDepensesRecurrentes; // Depenses where Prevu == true
+
 
     protected async override Task OnInitializedAsync()
     {
+        int NB_MONTH = 6;
+
         comptes = await compteDataService.GetAllComptes();
         compteCourant = comptes.Where(c => c.EstCompteCourant == true).First();
         if (compteCourant != null)
         {
             economies = comptes.Where(compte => compte != compteCourant).ToList();
         }
-        
+
         DateTime now = DateTime.Now;
         var french = CultureInfo.GetCultureInfo("fr-FR");
         mois = now.ToString("MMMM",french.DateTimeFormat);
         var joursRestantAvantMois = ((new DateTime(now.Year, now.Month, 1).AddMonths(1) - now)).Days;
         joursRestantAvantSalaire = joursRestantAvantMois.ToString();
         montantRestantParJourAvantZero = (compteCourant.Montant / joursRestantAvantMois).ToString();
+
+
+
+
+        // Tableau
+        double salaires = (await _salaireDataService.GetAllSalaires()).Sum(x => x.Valeur);
+        Months = new Dictionary<string, List<string>>();
+        double cc = compteCourant.Montant;
+        for (var i = 0; i < NB_MONTH; i++)
+        {
+            var mois = (new DateTime(now.Year, now.Month, 1).AddMonths(i));
+            Months.Add(
+                mois.ToString("MMMM", french.DateTimeFormat), 
+                new List<string>(){
+                    mois.ToString(),
+                Math.Round(cc,2).ToString()
+                });
+            cc += salaires;
+        }
+        
     }
+
 
     protected void AddNewEvent()
     {
