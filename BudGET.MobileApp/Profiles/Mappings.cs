@@ -17,7 +17,6 @@ namespace GloboTicket.TicketManagement.App.Profiles
             CreateMap<CreateBudgetDto, BudgetViewModel>().ReverseMap();
             CreateMap<UpdateBudgetCommand, BudgetViewModel>().ReverseMap();
             CreateMap<BudgetDetailVm, BudgetViewModel>().ReverseMap();
-            CreateMap<BudgetDto, BudgetViewModel>().ReverseMap();
             CreateMap<BudgetListVm, BudgetListViewModel>().ReverseMap();
 
             CreateMap<CreateCompteCommand, CompteViewModel>().ReverseMap();
@@ -30,21 +29,18 @@ namespace GloboTicket.TicketManagement.App.Profiles
             CreateMap<CreateDepenseDto, DepenseViewModel>().ReverseMap();
             CreateMap<UpdateDepenseCommand, DepenseViewModel>().ReverseMap();
             CreateMap<DepenseDetailVm, DepenseViewModel>().ReverseMap();
-            CreateMap<DepenseDto, DepenseViewModel>().ReverseMap();
             CreateMap<DepenseListVm, DepenseListViewModel>().ReverseMap();
 
             CreateMap<CreateObjectifCommand, ObjectifViewModel>().ReverseMap();
             CreateMap<CreateObjectifDto, ObjectifViewModel>().ReverseMap();
             CreateMap<UpdateObjectifCommand, ObjectifViewModel>().ReverseMap();
             CreateMap<ObjectifDetailVm, ObjectifViewModel>().ReverseMap();
-            CreateMap<ObjectifDto, ObjectifViewModel>().ReverseMap();
             CreateMap<ObjectifListVm, ObjectifListViewModel>().ReverseMap();
 
             CreateMap<CreateSalaireCommand, SalaireViewModel>().ReverseMap();
             CreateMap<CreateSalaireDto, SalaireViewModel>().ReverseMap();
             CreateMap<UpdateSalaireCommand, SalaireViewModel>().ReverseMap();
             CreateMap<SalaireDetailVm, SalaireViewModel>().ReverseMap();
-            CreateMap<SalaireDto, SalaireViewModel>().ReverseMap();
             CreateMap<SalaireListVm, SalaireListViewModel>().ReverseMap();
 
         }

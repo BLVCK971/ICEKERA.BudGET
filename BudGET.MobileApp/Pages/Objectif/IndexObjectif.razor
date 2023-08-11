@@ -63,9 +63,9 @@ else
     {
         NavigationManager.NavigateTo("/objectif/updateobjectif/" + ElementId);
     }
-    protected void DeleteElement(Guid ElementId)
+    protected async void DeleteElement(Guid ElementId)
     {
-        var response = ObjectifDataService.DeleteObjectif(ElementId);
+        var response = await ObjectifDataService.DeleteObjectif(ElementId);
         NavigationManager.NavigateTo("/objectif/indexobjectif", true);
     }
     protected void Back()
