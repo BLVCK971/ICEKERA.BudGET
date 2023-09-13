@@ -1,0 +1,81 @@
+﻿@using BudGET.MobileApp.Contracts;
+@using BudGET.MobileApp.ViewModels.BudgetViewModels;
+@using BudGET.MobileApp.ViewModels.DepenseViewModels;
+@page "/fastdepense"
+
+<h3>Dépenses Rapide</h3>
+<div class="m-2 d-flex justify-content-end">
+    <button @onclick="Back" class="btn btn-secondary mx-3">Back</button>
+    </div>
+
+@if (Liste == null)
+{
+    <p><em>Loading...</em></p>
+    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+}
+else
+{
+<table class="table table-dark" id="depenses">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Price</th>
+            <th scope="col">Name</th>
+            <th scope="col">Budget</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var ev in Liste)
+            {
+        <tr>
+            <th scope="row">1</th>
+                    <td>
+                        <InputNumber @bind-Value=ev.Valeur type="number" class="form-control" id="floatingPassword" />
+                    </td>
+                    <td>
+                        <InputText @bind-Value=ev.Nom type="text" class="form-control" required id="floatingInput" placeholder=@ev.Nom /></td>
+                    <td>
+                        <InputSelect @bind-Value=ev.BudgetId class="form-control" id="floatingPassword">
+                            @foreach (var budget in ListeBudgets)
+                            {
+                                <option value="@budget.Id">@budget.Nom</option>
+                            }
+                        </InputSelect>
+            </td>
+            <td><input /></td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+
+@code {
+    [Inject]
+    public IDepenseDataService _depenseDataService { get; set; }
+    [Inject]
+    public IBudgetDataService _budgetDataService { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    private ICollection<DepenseListViewModel> Liste { get; set; }
+    private ICollection<BudgetListViewModel> ListeBudgets { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        //Todo : Une requête si possible
+        Liste = await _depenseDataService.GetAllDepenses();
+        ListeBudgets = await _budgetDataService.GetAllBudgets();
+        foreach (var e in Liste)
+        {
+            e.Budget = ListeBudgets.Where(x => x.Id == e.BudgetId).FirstOrDefault();
+        }
+    }
+
+    protected void Back()
+    {
+        NavigationManager.NavigateTo("/admin");
+    }
+
+}
