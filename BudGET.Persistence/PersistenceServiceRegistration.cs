@@ -11,9 +11,14 @@ namespace BudGET.Persistence
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
 
+            //services.AddDbContext<BudGETDbContext>(options =>
+            //    options.UseNpgsql(configuration.GetConnectionString("BudGETConnectionString")));
+            //AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             services.AddDbContext<BudGETDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("BudGETConnectionString")));
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+                options.UseSqlite("Filename=BudGET.db")
+            );
+
+
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
             services.AddScoped<IBudgetRepository, BudgetRepository>();

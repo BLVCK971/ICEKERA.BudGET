@@ -27,11 +27,11 @@ else
         <div class="">Avant 0 : @montantRestantParJourAvantZero</div>
         <div class="">Avant Fin du Budget : @montantRestantParJourAvantFinBudget</div>
 </button>
-
+    <InputNumber TValue="int" @bind-Value="@Percent"></InputNumber>
     <table class="table">
         <thead>
             <tr>
-                @foreach(var month in Months)
+                @foreach(var month in MonthsCC)
                 {
                     <th>@month.Key</th>
                 }
@@ -39,7 +39,7 @@ else
         </thead>
         <tbody>
             <tr>
-            @foreach (var month in Months)
+            @foreach (var month in MonthsCC)
             {
                 <td>
 @*                    <tr>
@@ -53,7 +53,23 @@ else
                         @*Compte après prévu/redondant*@
                         @*Compte après budget = n*@
                 </td>
-            }
+                }</tr>
+            <tr>
+                @foreach (var month in MonthsCE)
+                {
+            <td>
+                        @*                    <tr>
+        @month.Value[0]
+        </tr>*@
+            <tr>
+                            @*Compte n-1 avant prévu après salaire*@ @month.Value[1] €
+            </tr>
+                        @*Compte après dépenses exceptionnelles*@
+                        @*Dépenses prévues*@
+                        @*Compte après prévu/redondant*@
+                        @*Compte après budget = n*@
+            </td>
+                }
             </tr>
         </tbody>          
     </table>
@@ -67,16 +83,21 @@ else
     [Inject]
     public ISalaireDataService _salaireDataService { get; set; }
     [Inject]
+    public IDepenseDataService _depenseDataService { get; set; }
+    [Inject]
     public NavigationManager NavigationManager { get; set; }
 
     // Données
     public List<CompteListViewModel> comptes { get; set; }
+    public List<DepenseListViewModel> depensesPrevus { get; set; }
 
     // Affichage
     CompteListViewModel compteCourant;
     List<CompteListViewModel> economies;
-    Dictionary<string, List<string>> Months;
+    Dictionary<string, List<string>> MonthsCC;
 
+    Dictionary<string, List<string>> MonthsCE;
+    int Percent = 0;
     string compteApresPrevu;
 
     string mois;
@@ -114,18 +135,29 @@ else
 
         // Tableau
         double salaires = (await _salaireDataService.GetAllSalaires()).Sum(x => x.Valeur);
-        Months = new Dictionary<string, List<string>>();
+        MonthsCC = new Dictionary<string, List<string>>();
+        MonthsCE = new Dictionary<string, List<string>>();
+
         double cc = compteCourant.Montant;
+        double ce = economies.Sum(x => x.Montant);
         for (var i = 0; i < NB_MONTH; i++)
         {
             var mois = (new DateTime(now.Year, now.Month, 1).AddMonths(i));
-            Months.Add(
+            MonthsCC.Add(
                 mois.ToString("MMMM", french.DateTimeFormat), 
                 new List<string>(){
                     mois.ToString(),
                 Math.Round(cc,2).ToString()
                 });
-            cc += salaires;
+            MonthsCE.Add(
+                mois.ToString("MMMM", french.DateTimeFormat),
+                new List<string>(){
+                    mois.ToString(),
+                Math.Round(ce,2).ToString()
+                    });
+                    
+            cc += salaires - salaires* Percent;
+            ce += salaires * Percent;
         }
         
     }

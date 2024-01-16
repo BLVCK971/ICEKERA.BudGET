@@ -27,7 +27,7 @@ public static class MauiProgram
         builder.Services.AddBlazorWebViewDeveloperTools();
         builder.Logging.AddDebug(); ;
 #endif
-        bool BIG_DEBUG = false;
+        bool BIG_DEBUG = true;
         
         if (BIG_DEBUG)
         {
