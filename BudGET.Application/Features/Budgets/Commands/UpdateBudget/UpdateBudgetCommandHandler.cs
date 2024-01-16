@@ -17,7 +17,7 @@ namespace BudGET.Application.Features.Budgets.Commands.UpdateBudget
             _eventRepository = serviceRepository;
         }
 
-        public async Task<Unit> Handle(UpdateBudgetCommand request, CancellationToken cancellationToken)
+        public async Task Handle(UpdateBudgetCommand request, CancellationToken cancellationToken)
         {
 
             var serviceToUpdate = await _eventRepository.GetByIdAsync(request.Id);
@@ -36,8 +36,6 @@ namespace BudGET.Application.Features.Budgets.Commands.UpdateBudget
             _mapper.Map(request, serviceToUpdate, typeof(UpdateBudgetCommand), typeof(Budget));
 
             await _eventRepository.UpdateAsync(serviceToUpdate);
-
-            return Unit.Value;
         }
     }
 }

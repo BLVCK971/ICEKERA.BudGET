@@ -17,7 +17,7 @@ namespace BudGET.Application.Features.Objectifs.Commands.DeleteObjectif
             _serviceRepository = serviceRepository;
         }
 
-        public async Task<Unit> Handle(DeleteObjectifCommand request, CancellationToken cancellationToken)
+        public async Task Handle(DeleteObjectifCommand request, CancellationToken cancellationToken)
         {
             var serviceToDelete = await _serviceRepository.GetByIdAsync(request.Id);
 
@@ -27,8 +27,6 @@ namespace BudGET.Application.Features.Objectifs.Commands.DeleteObjectif
             }
 
             await _serviceRepository.DeleteAsync(serviceToDelete);
-
-            return Unit.Value;
         }
     }
 }

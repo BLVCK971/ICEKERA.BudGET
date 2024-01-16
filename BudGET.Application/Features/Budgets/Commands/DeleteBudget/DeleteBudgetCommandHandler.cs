@@ -17,7 +17,7 @@ namespace BudGET.Application.Features.Budgets.Commands.DeleteBudget
             _serviceRepository = serviceRepository;
         }
 
-        public async Task<Unit> Handle(DeleteBudgetCommand request, CancellationToken cancellationToken)
+        public async Task Handle(DeleteBudgetCommand request, CancellationToken cancellationToken)
         {
             var serviceToDelete = await _serviceRepository.GetByIdAsync(request.Id);
 
@@ -27,8 +27,6 @@ namespace BudGET.Application.Features.Budgets.Commands.DeleteBudget
             }
 
             await _serviceRepository.DeleteAsync(serviceToDelete);
-
-            return Unit.Value;
         }
     }
 }

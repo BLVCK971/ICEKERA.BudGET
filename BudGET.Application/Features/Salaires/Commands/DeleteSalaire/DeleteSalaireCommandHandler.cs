@@ -17,7 +17,7 @@ namespace BudGET.Application.Features.Salaires.Commands.DeleteSalaire
             _serviceRepository = serviceRepository;
         }
 
-        public async Task<Unit> Handle(DeleteSalaireCommand request, CancellationToken cancellationToken)
+        public async Task Handle(DeleteSalaireCommand request, CancellationToken cancellationToken)
         {
             var serviceToDelete = await _serviceRepository.GetByIdAsync(request.Id);
 
@@ -27,8 +27,6 @@ namespace BudGET.Application.Features.Salaires.Commands.DeleteSalaire
             }
 
             await _serviceRepository.DeleteAsync(serviceToDelete);
-
-            return Unit.Value;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace BudGET.Application.Features.Depenses.Commands.DeleteDepense
             _serviceRepository = serviceRepository;
         }
 
-        public async Task<Unit> Handle(DeleteDepenseCommand request, CancellationToken cancellationToken)
+        public async Task Handle(DeleteDepenseCommand request, CancellationToken cancellationToken)
         {
             var serviceToDelete = await _serviceRepository.GetByIdAsync(request.Id);
 
@@ -27,8 +27,6 @@ namespace BudGET.Application.Features.Depenses.Commands.DeleteDepense
             }
 
             await _serviceRepository.DeleteAsync(serviceToDelete);
-
-            return Unit.Value;
         }
     }
 }

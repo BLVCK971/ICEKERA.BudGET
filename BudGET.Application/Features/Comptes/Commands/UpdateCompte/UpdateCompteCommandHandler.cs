@@ -17,7 +17,7 @@ namespace BudGET.Application.Features.Comptes.Commands.UpdateCompte
             _eventRepository = serviceRepository;
         }
 
-        public async Task<Unit> Handle(UpdateCompteCommand request, CancellationToken cancellationToken)
+        public async Task Handle(UpdateCompteCommand request, CancellationToken cancellationToken)
         {
 
             var serviceToUpdate = await _eventRepository.GetByIdAsync(request.Id);
@@ -36,8 +36,6 @@ namespace BudGET.Application.Features.Comptes.Commands.UpdateCompte
             _mapper.Map(request, serviceToUpdate, typeof(UpdateCompteCommand), typeof(Compte));
 
             await _eventRepository.UpdateAsync(serviceToUpdate);
-
-            return Unit.Value;
         }
     }
 }

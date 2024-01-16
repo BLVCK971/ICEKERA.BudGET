@@ -17,7 +17,7 @@ namespace BudGET.Application.Features.Objectifs.Commands.UpdateObjectif
             _eventRepository = serviceRepository;
         }
 
-        public async Task<Unit> Handle(UpdateObjectifCommand request, CancellationToken cancellationToken)
+        public async Task Handle(UpdateObjectifCommand request, CancellationToken cancellationToken)
         {
 
             var serviceToUpdate = await _eventRepository.GetByIdAsync(request.Id);
@@ -36,8 +36,6 @@ namespace BudGET.Application.Features.Objectifs.Commands.UpdateObjectif
             _mapper.Map(request, serviceToUpdate, typeof(UpdateObjectifCommand), typeof(Objectif));
 
             await _eventRepository.UpdateAsync(serviceToUpdate);
-
-            return Unit.Value;
         }
     }
 }
