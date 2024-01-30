@@ -5,7 +5,7 @@ var app = builder
        .ConfigureServices()
        .ConfigurePipeline();
 
-//app.MapGet("/", () => "Hello World!");
+
 
 
 //await app.ResetDatabaseAsync();
