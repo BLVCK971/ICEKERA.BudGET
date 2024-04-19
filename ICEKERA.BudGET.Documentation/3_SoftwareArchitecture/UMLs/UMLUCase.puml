@@ -1,0 +1,55 @@
+@startuml
+skinparam actorStyle awesome
+left to right direction
+title UseCase BudGet
+
+:Utilisateur: as U
+
+
+
+Package BudGet{
+
+    
+
+  U --> (Gérer Salaire)
+  (Gérer Salaire) --> (Nommer source)
+  (Gérer Salaire) --> (Mettre montant)
+
+  U --> (Gérer les Dépenses)
+  (Gérer les Dépenses) --> (Ajouter une nouvelle dépense)
+  (Ajouter une nouvelle dépense) --> (Voir rapport modifié par dépense)
+  (Gérer les Dépenses) --> (Modifier une dépense)
+  (Gérer les Dépenses) --> (Catégoriser une dépense)
+  (Gérer les Dépenses) --> (Justifier bon ou mauvais)
+  (Gérer les Dépenses) --> (Mettre type récurent une dépense)
+  
+  U --> (Gérer les Catégories)
+  (Gérer les Catégories) --> (Nommer la catégorie)
+  (Gérer les Catégories) --> (Donner un budget)
+
+  
+  U --> (Gérer les objectifs)
+  (Gérer les objectifs) --> (Nommer l'objectif)
+  (Gérer les objectifs) --> (Mettre une somme)
+
+
+
+  U --> (Voir le rapport)
+
+  (Voir le rapport) --> (Rapport Budjet)
+  (Rapport Budjet)--> (Restant)
+  (Rapport Budjet)--> (Restant/Jours restant du mois)
+
+  (Voir le rapport) --> (Voir le prévisionnel CC et Eco)
+  (Voir le prévisionnel CC et Eco) --> (aujourd'hui)
+  (Voir le prévisionnel CC et Eco) --> (sur 6 mois)
+  (Voir le prévisionnel CC et Eco) --> (dans 1 an)
+  (Voir le prévisionnel CC et Eco) --> (dans 10 ans)
+  (Voir le rapport) --> (Voir résumé des Objectifs)
+  (Voir résumé des Objectifs) --> (Option Jeff Bezos)
+  (Voir résumé des Objectifs) --> (Option FIFO)
+
+
+
+}
+@enduml

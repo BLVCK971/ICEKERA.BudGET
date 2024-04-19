@@ -1,0 +1,41 @@
+@startuml
+
+class Budjet{
+    String Nom
+    Double Montant
+    Binaire Bon?
+    GetCurrent() 
+
+}
+class Dépense {
+    String Nom
+    Date date
+    Double Montant
+    Binaire Récurrant?
+}
+class Salaire{
+    String Source
+    Double Montant
+}
+class Objectif {
+    String Nom
+    Double Montant
+}
+class Utilisateur {
+    String Nom
+    Double CompteCourant
+    Double Economies
+
+    ModifCC()
+    ModifEco()
+}
+
+Utilisateur "0..*" -- "1..*" Objectif
+Utilisateur "0..*" -- "1..*" Salaire
+Utilisateur "0..*" -- "1..*" Dépense
+Utilisateur "0..*" -- "0..*" Budjet
+
+
+Budjet "0..*" -- "0..1" Dépense
+
+@enduml
